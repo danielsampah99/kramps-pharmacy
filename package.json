@@ -1,0 +1,60 @@
+{
+	"name": "kramps-pharmacy",
+	"private": true,
+	"sideEffects": false,
+	"type": "module",
+	"scripts": {
+		"dev": "convex dev --start 'vite dev --port 4000 --host pharmacy.localhost'",
+		"build": "vite build && tsc --noEmit",
+		"start": "node .output/server/index.mjs",
+		"format": "oxfmt",
+		"format:check": "oxfmt --check",
+		"lint": "oxlint",
+		"lint:fix": "oxlint --fix"
+	},
+	"dependencies": {
+		"@cloudflare/kumo": "^2.6.0",
+		"@convex-dev/react-query": "^0.1.0",
+		"@scarlab-icons/react": "^2.0.3",
+		"@tanstack/react-query": "^5.99.0",
+		"@tanstack/react-router": "^1.168.22",
+		"@tanstack/react-router-with-query": "^1.130.17",
+		"@tanstack/react-start": "^1.167.41",
+		"@unpic/react": "^1.0.2",
+		"add": "^2.0.6",
+		"convex": "^1.36.1",
+		"react": "^19.2.5",
+		"react-dom": "^19.2.5"
+	},
+	"devDependencies": {
+		"@convex-dev/eslint-plugin": "^2.0.0",
+		"@tailwindcss/forms": "^0.5.11",
+		"@tailwindcss/vite": "^4.2.2",
+		"@tanstack/devtools-vite": "^0.8.0",
+		"@tanstack/eslint-config": "^0.4.0",
+		"@tanstack/react-devtools": "^0.10.7",
+		"@tanstack/react-form-devtools": "^0.2.29",
+		"@tanstack/react-query-devtools": "^5.101.0",
+		"@tanstack/react-router-devtools": "^1.167.0",
+		"@types/react": "^19.2.14",
+		"@types/react-dom": "^19.2.3",
+		"@vitejs/plugin-react": "^6.0.2",
+		"oxfmt": "^0.56.0",
+		"oxlint": "^1.71.0",
+		"tailwindcss": "^4.2.2",
+		"typescript": "^6.0.3",
+		"vite": "^8.0.9",
+		"vite-tsconfig-paths": "^6.1.1"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": [
+			"esbuild",
+			"@tailwindcss/oxide"
+		],
+		"peerDependencyRules": {
+			"allowedVersions": {
+				"tsconfck": "6.0.3"
+			}
+		}
+	}
+}

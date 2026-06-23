@@ -1,0 +1,23 @@
+{
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"ignorePatterns": [
+		".nitro/",
+		".output/",
+		".tanstack/",
+		"**/api",
+		"**/build",
+		"**/public",
+		"convex/_generated/",
+		"example/convex/_generated/",
+		"convex/README.md",
+		"pnpm-lock.yaml",
+		"routeTree.gen.ts"
+	],
+	"printWidth": 150,
+	"useTabs": true,
+	"tabWidth": 4,
+	"sortTailwindcss": {
+		"functions": ["cn", "clsx", "classNames", "cva"],
+		"stylesheet": "./src/styles/app.css"
+	}
+}
