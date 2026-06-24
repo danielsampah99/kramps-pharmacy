@@ -14,9 +14,9 @@ export const Navbar = () => (
 		<div className="flex items-center">
 			<Link
 				to="/"
-				className="bg-logo h-9 text-black py-1 rounded-xl px-3 w-fit"
+				className="bg-transparent h-9 py-1 rounded-xl px-3 w-fit"
 			>
-				<Logo className="h-full text-logo fill-logo" />
+				<Logo className="h-full stroke-brand text-brand" />
 			</Link>
 		</div>
 

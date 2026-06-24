@@ -69,31 +69,8 @@
 	.btn-lg,
 	.btn-xl,
 	.btn-2xl {
-		--btn-inner-shadow: inset 0 -3px 6px -2px #e7e6f4;
-		--btn-inner-shadow-active: inset 0 0 6px #ddd6fe;
-		--btn-shadow: 0 0 transparent;
-		--btn-text-color: #281950;
-		--btn-text-color-active: #7c3aed;
-		--btn-bg-color: white;
-		--btn-bg-color-active: #f9f9fd;
-		--btn-border-color: rgb(91 33 182 / 0.125);
-		--btn-border-color-active: rgb(167 139 250 / 0.4);
-		--btn-ring-color: rgb(221 214 254 / 0.75);
-		align-items: center;
-		background-clip: padding-box;
-		background-color: var(--btn-bg-color);
-		border-color: var(--btn-border-color);
-		border-radius: 9999px;
-		border-width: 1px;
-		box-shadow: var(--btn-inner-shadow), var(--btn-shadow);
-		color: var(--btn-text-color) !important;
-		display: inline-flex;
-		font-weight: 450;
-		justify-content: center;
-		letter-spacing: 0em;
-		white-space: nowrap;
-		transition: 0.2s all;
-		@apply inset-shadow-btn shadow-btn-transparent;
+		box-shadow: var(--inset-shadow-btn), var(--shadow-btn-transparent);
+		@apply inline-flex items-center tracking-normal text-btn-text bg-white font-btn bg-clip-padding inset-shadow-btn shadow-btn-transparent whitespace-nowrap transition-all duration-200 justify-center rounded-full border-btn-border border;
 	}
 	.btn-xs:not(:disabled):hover,
 	.btn-sm:not(:disabled):hover,
@@ -101,10 +78,8 @@
 	.btn-lg:not(:disabled):hover,
 	.btn-xl:not(:disabled):hover,
 	.btn-2xl:not(:disabled):hover {
-		color: var(--btn-text-color-active);
-		background-color: var(--btn-bg-color-active);
-		border-color: var(--btn-border-color-active);
-		box-shadow: var(--btn-inner-shadow-active), var(--btn-shadow-active);
+		box-shadow: var(--inset-shadow-btn-active) var(--shadow-btn-active);
+		@apply text-btn-text border-btn-active;
 	}
 	.btn-xs:focus,
 	.btn-sm:focus,
@@ -112,13 +87,10 @@
 	.btn-lg:focus,
 	.btn-xl:focus,
 	.btn-2xl:focus {
-		color: var(--btn-text-color-active);
-		background-color: var(--btn-bg-color-active);
-		border-color: var(--btn-border-color-active);
 		box-shadow:
-			0 0 0 3px var(--btn-ring-color),
+			0 0 0 3px var(--color-btn-ring),
 			var(--btn-inner-shadow-active);
-		transition: none;
+		@apply text-btn-active bg-btn-active border-btn-border transition-none;
 	}
 	.btn-xs:disabled,
 	.btn-sm:disabled,
@@ -246,25 +218,12 @@
 		);
 		outline: none !important;
 	}
-	.btn-purple {
-		--btn-bg-color: #7c3aed;
-		--btn-bg-color-active: #6d28d9;
-		--btn-border-color: rgb(255 255 255 / 0);
-		--btn-border-color-active: rgb(255 255 255 / 0);
-		--btn-inner-shadow: inset 0 0 0 1px rgb(221 214 254 / 0.25);
-		--btn-inner-shadow-active: inset 0 0 0 1px rgb(221 214 254 / 0.25);
-		--btn-ring-color: rgb(255 255 255 / 0.1);
-		--btn-text-color: white;
-		--btn-text-color-active: white;
+	.btn-brand {
+
 		text-shadow: 0px 1px 3px var(--tw-text-shadow-color);
-		background-image: linear-gradient(
-			to bottom right,
-			#a02be4,
-			transparent,
-			#4f46e5
-		);
-		background-clip: padding-box;
-		outline: none !important;
+		@apply outline-none cursor-pointer bg-clip-padding bg-brand bg-linear-to-br 
+			from-brand/60 via-transparent to-brand/90 text-white shadow-btn border-white
+			active:text-white ring-white/10 active:inset-shadow-btn-active active:border-white;
 	}
 	.btn-border-light {
 		--btn-inner-shadow: inset 0 0 0 1px rgb(221 214 254 / 0.25);
@@ -518,19 +477,26 @@
 		oklch(0.8696 0.1517 175)
 	);
 
+	--color-btn-active: oklch(0.919 0.0072 132.91 / 94.18%);
+
+	--color-btn-text: oklch(0.3516 0.0612 176.21 / 87.65%);
+	--color-btn-ring: oklch(0.4372 0.077 170.39 / 94.18%);
+
+	--color-btn-border: oklch(0.8 0.17 162.48 / 36.87%);
+	--color-btn-border-active: oklch(0.6365 0.059 176.21 / 40%);
+
 	--spacing-btn: 2.375rem;
 
 	--text-btn: 14.5px;
 
 	--radius-btn: 9px; /** 0.5625rem */
 
-	/**
-	--btn-inner-shadow: inset 0 -3px 6px -2px #e7e6f4;
-	--btn-inner-shadow-active: inset 0 0 6px #ddd6fe;
-	*/
-	--inset-shadow-btn: inset 0 -3px 6px -2px var(--brand);
-	--inset-shadow-btn-active: inset 0 0 6px var(--logo);
+	--font-weight-btn: 450;
 
+	--inset-shadow-btn: inset 0 -3px 6px -2px var(--color-brand);
+	--inset-shadow-btn-active: inset 0 0 6px oklch(0.8026 0.1517 162.51);
+
+	--shadow-btn-active: 0 0 transparent;
 	--shadow-btn:
 		0 5px 5px -2px rgb(91 33 182 / 0.1), 0 2px 4px -2px rgb(91 33 182 / 0.1);
 	--shadow-btn-transparent: 0px 0px transparent;
