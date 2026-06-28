@@ -1,9 +1,9 @@
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import { defineConfig } from "vite";
-import tsConfigPaths from "vite-tsconfig-paths";
 import tailwindcss from "@tailwindcss/vite";
 import viteReact from "@vitejs/plugin-react";
 import { devtools } from "@tanstack/devtools-vite";
+import { fileURLToPath } from "url";
 
 export default defineConfig({
 	server: {
@@ -12,16 +12,16 @@ export default defineConfig({
 	optimizeDeps: {
 		include: ["@scarlab-icons/react"],
 	},
-	ssr: {
-		noExternal: ["@scarlab-icons/react"],
+	resolve: {
+		tsconfigPaths: true,
+		alias: {
+			"~convex": fileURLToPath(new URL("./convex", import.meta.url))
+		},
 	},
 	plugins: [
 		tailwindcss(),
 		devtools(),
-		tsConfigPaths({
-			projects: ["./tsconfig.json"],
-		}),
 		tanstackStart(),
-		viteReact(),
+		viteReact()
 	],
 });

@@ -1,5 +1,6 @@
 import {
 	HeadContent,
+	Outlet,
 	Scripts,
 	createRootRouteWithContext,
 } from "@tanstack/react-router";
@@ -8,9 +9,10 @@ import { TanStackDevtools } from "@tanstack/react-devtools";
 import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
 import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { FormDevtoolsPanel } from "@tanstack/react-form-devtools";
+import { tableDevtoolsPlugin } from "@tanstack/react-table-devtools";
 import appCss from "~/styles/app.css?url";
-import { Navbar } from "~/components/navbar";
-import { Sidebar } from "~/components/sidebar";
+import { Toasty } from "@cloudflare/kumo";
+import { TooltipProvider } from "~/components/tooltip";
 
 export const Route = createRootRouteWithContext<{
 	queryClient: QueryClient;
@@ -41,12 +43,9 @@ export const Route = createRootRouteWithContext<{
 function RootComponent() {
 	return (
 		<RootDocument>
-			<Navbar />
-
-			<section className="w-full flex min-h-[calc(100lvh-64px)] bg-linear-to-r/oklch from-logo/70 via-white to-brand/30 flex-col lg:flex-row gap-4 lg:gap-6 py-4 lg:py-6 px-4 sm:px-8 lg:pb-8 lg:overflow-visible">
-				<Sidebar />
-				
-			</section>
+			<TooltipProvider delay={0}>
+				<Outlet />
+			</TooltipProvider>
 			<TanStackDevtools
 				plugins={[
 					{
@@ -61,6 +60,7 @@ function RootComponent() {
 						name: "Form Devtools",
 						render: <FormDevtoolsPanel />,
 					},
+					tableDevtoolsPlugin(),
 				]}
 			/>
 		</RootDocument>
@@ -73,8 +73,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
 			<head>
 				<HeadContent />
 			</head>
-			<body>
-				{children}
+			<body className="selection:bg-emerald-600 selection:text-white">
+				<Toasty>{children}</Toasty>
 				<Scripts />
 			</body>
 		</html>

@@ -1,4 +1,5 @@
 import type { SVGProps } from "react";
+
 export const DashboardIcon = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		role="img"
