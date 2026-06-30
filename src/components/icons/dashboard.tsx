@@ -4,7 +4,7 @@ export const DashboardIcon = (props: SVGProps<SVGSVGElement>) => (
 	<svg
 		role="img"
 		className="transition-colors"
-		viewBox="0 0 20 20"
+		viewBox="0 0 24 24"
 		fill="currentColor"
 		{...props}
 	>

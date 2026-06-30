@@ -13,6 +13,8 @@ import { tableDevtoolsPlugin } from "@tanstack/react-table-devtools";
 import appCss from "~/styles/app.css?url";
 import { Toasty } from "@cloudflare/kumo";
 import { TooltipProvider } from "~/components/tooltip";
+import { ConvexAuthProvider } from "@convex-dev/auth/react";
+import { ConvexReactClient } from "convex/react";
 
 export const Route = createRootRouteWithContext<{
 	queryClient: QueryClient;
@@ -40,29 +42,33 @@ export const Route = createRootRouteWithContext<{
 	component: RootComponent,
 });
 
+const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
+
 function RootComponent() {
 	return (
 		<RootDocument>
-			<TooltipProvider delay={0}>
-				<Outlet />
-			</TooltipProvider>
-			<TanStackDevtools
-				plugins={[
-					{
-						name: "Query Devtools",
-						render: <ReactQueryDevtoolsPanel />,
-					},
-					{
-						name: "Router Devtools",
-						render: <TanStackRouterDevtoolsPanel />,
-					},
-					{
-						name: "Form Devtools",
-						render: <FormDevtoolsPanel />,
-					},
-					tableDevtoolsPlugin(),
-				]}
-			/>
+			<ConvexAuthProvider client={convex}>
+				<TooltipProvider delay={0}>
+					<Outlet />
+				</TooltipProvider>
+				<TanStackDevtools
+					plugins={[
+						{
+							name: "Query Devtools",
+							render: <ReactQueryDevtoolsPanel />,
+						},
+						{
+							name: "Router Devtools",
+							render: <TanStackRouterDevtoolsPanel />,
+						},
+						{
+							name: "Form Devtools",
+							render: <FormDevtoolsPanel />,
+						},
+						tableDevtoolsPlugin(),
+					]}
+				/>
+			</ConvexAuthProvider>
 		</RootDocument>
 	);
 }

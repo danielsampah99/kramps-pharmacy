@@ -10,7 +10,7 @@ export default defineConfig({
 		port: 3000,
 	},
 	optimizeDeps: {
-		include: ["@scarlab-icons/react"],
+		exclude: ["@scarlab-icons/react"],
 	},
 	resolve: {
 		tsconfigPaths: true,

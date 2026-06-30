@@ -5,18 +5,18 @@ import {
 	ClipboardCheckIcon,
 	CogIcon,
 	DatabaseIcon,
-	IdentificationIcon,
+	IdIcon,
 	InboxInIcon,
 	LockIcon,
-	PresentationChartBarAltIcon,
-	ShoppingBagIcon,
-	ShoppingCartIcon,
+	ChartIcon,
+	BagIcon,
+	CartIcon,
 	StoreIcon,
 	TimerIcon,
 	UserAddIcon,
 	UserSquareIcon,
 	UserXIcon,
-} from "@scarlab-icons/react/ghost";
+} from "~/components/icons";
 import { Link, Outlet, type LinkProps } from "@tanstack/react-router";
 import type { FC, SVGProps } from "react";
 
@@ -41,11 +41,11 @@ const SidebarRouteItem = ({
 		hover:text-white lg:hover:bg-transparent lg:hover:text-emerald-600 lg:text-emerald-900"
 		activeProps={{
 			className:
-				"transition-colors text-white bg-emerald-600/90 lg:bg-emerald-500/20 lg:text-emerald-700 hover:bg-emerald:600/90 hover:text-emerald-700",
+				"transition-colors text-white bg-emerald-600/90 lg:bg-emerald-500/20 lg:text-emerald-700 hover:bg-emerald-600/90 hover:text-emerald-700",
 		}}
 	>
 		<span className="size-5 lg:size-6 flex items-center justify-center shrink-0 lg:bg-linear-to-b lg:from-white/75 lg:to-emerald-100/75 lg:rounded-md lg:shadow-sm lg:shadow-emerald-800/10 lg:ring-1 lg:ring-emerald-800/10">
-			<Icon className="size-3.5 stroke-brand" />
+			<Icon className="size-3.5 stroke-brand fill-transparent stroke-2" />
 		</span>
 		<span className="capitalize text-center font-btn text-btn lg:text-left truncate w-full lg:w-auto">
 			{name}
@@ -54,7 +54,7 @@ const SidebarRouteItem = ({
 );
 
 const dailyOperationsRoutes: Array<SidebarRouteProps> = [
-	{ id: 1, name: "Sales", icon: ShoppingBagIcon, href: "/" },
+	{ id: 1, name: "Sales", icon: BagIcon, href: "/" },
 	{ id: 2, name: "Prescriptions", icon: ClipboardCheckIcon, href: "/" },
 ];
 
@@ -69,11 +69,11 @@ const inventoryRoutes: Array<SidebarRouteProps> = [
 	{ id: 2, name: "Expiry Tracker", icon: TimerIcon, href: "/" },
 	{ id: 3, name: "Purchase Orders", icon: InboxInIcon, href: "/" },
 	{ id: 4, name: "Suppliers", icon: BuildingIcon, href: "/" },
-	{ id: 5, name: "Reports", icon: PresentationChartBarAltIcon, href: "/" },
+	{ id: 5, name: "Reports", icon: ChartIcon, href: "/" },
 ];
 
 const adminRoutes: Array<SidebarRouteProps> = [
-	{ id: 1, name: "Staff", icon: IdentificationIcon, href: "/" },
+	{ id: 1, name: "Staff", icon: IdIcon, href: "/staff" },
 	{ id: 2, name: "Permissions", icon: LockIcon, href: "/" },
 	{ id: 3, name: "Settings", icon: CogIcon, href: "/" },
 ];
@@ -102,7 +102,7 @@ export const Sidebar = () => (
 				</KSidebar.Group>
 
 				<Button className="btn btn-brand mt-4 w-full inline-flex gap-2 font-medium hover:text-white! focus:text-white">
-					<ShoppingCartIcon className="size-4.5 stroke-logo fill-brand/10" />
+					<CartIcon className="size-4.5 stroke-logo fill-brand/10" />
 					Point of Sale
 				</Button>
 

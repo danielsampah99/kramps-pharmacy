@@ -23,9 +23,6 @@ importers:
       '@convex-dev/react-query':
         specifier: ^0.1.0
         version: 0.1.0(@tanstack/react-query@5.101.2(react@19.2.7))(convex@1.42.0(react@19.2.7))
-      '@scarlab-icons/react':
-        specifier: ^2.0.3
-        version: 2.0.3
       '@solar-icons/react':
         specifier: ^1.1.1
         version: 1.1.1(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
@@ -53,6 +50,9 @@ importers:
       date-fns:
         specifier: ^4.4.0
         version: 4.4.0
+      jose:
+        specifier: ^6.2.3
+        version: 6.2.3
       react:
         specifier: ^19.2.5
         version: 19.2.7
@@ -1186,9 +1186,6 @@ packages:
     resolution: {integrity: sha512-BfzEnDJOt9T8M989/lA37EcJgat01wLRnoi5dQf3QzOH7jzpqTAzdDbVfRljVr5r+jzKqpbHeyOfAaXxAd0PAA==}
     cpu: [x64]
     os: [win32]
-
-  '@scarlab-icons/react@2.0.3':
-    resolution: {integrity: sha512-elimue5skVh8jM2UGSX+BzNYiJqMsXmqUSkxvZh4qloiBYQIjYil6t9txu5ir3x0En2I/2wryk1gwRJ4OkGHFg==}
 
   '@shikijs/core@4.3.0':
     resolution: {integrity: sha512-EooU3i9F6IAE8kEu+AnGf9DFZWkQBZ+hJn3tLVbsH+61mtQiva5biai66fAA6nvFPXkLgvrh7BrR7YcJU83xQQ==}
@@ -3793,8 +3790,6 @@ snapshots:
 
   '@rollup/rollup-win32-x64-msvc@4.62.2':
     optional: true
-
-  '@scarlab-icons/react@2.0.3': {}
 
   '@shikijs/core@4.3.0':
     dependencies:

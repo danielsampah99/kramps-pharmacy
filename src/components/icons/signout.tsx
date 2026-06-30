@@ -2,7 +2,7 @@ import type { SVGProps } from "react";
 
 export const SignOutIcon = (props: SVGProps<SVGSVGElement>) => (
 	<svg
-		viewBox="0 0 20 20"
+		viewBox="0 0 24 24"
 		fill="currentColor"
 		{...props}
 	>

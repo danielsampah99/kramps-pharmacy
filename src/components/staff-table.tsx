@@ -46,14 +46,14 @@ const staffColumns = [
 	sth.accessor((row) => row.email, {
 		header: "Email Address",
 		cell: (info) => (
-			<a href={`mailto:${info.getValue}`} className="underline lowercase">
+			<a href={`mailto:${info.getValue()}`} className="underline lowercase">
 				{info.getValue()}
 			</a>
 		),
 	}),
 	sth.accessor((row) => row.phone, {
 		header: "Phone Number",
-		cell: (info) => <a href={`tel:${info.getValue}`}>{info.getValue()}</a>,
+		cell: (info) => <a href={`tel:${info.getValue()}`}>{info.getValue()}</a>,
 	}),
 	sth.accessor((row) => row.createdAt, {
 		header: "Added At",

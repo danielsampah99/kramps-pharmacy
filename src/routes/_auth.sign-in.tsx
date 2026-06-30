@@ -1,6 +1,6 @@
 import { Button, Input, Label, useKumoToastManager } from "@cloudflare/kumo";
 import { useAuthActions } from "@convex-dev/auth/react";
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ConvexError } from "convex/values";
 import { useState } from "react";
 import type { ReactNode, SubmitEvent } from "react";
@@ -25,6 +25,7 @@ type SignInPageProps = {
 function RouteComponent({ provider, handleSent }: SignInPageProps) {
 	const { signIn } = useAuthActions();
 	const toast = useKumoToastManager();
+	const navigate = useNavigate()
 	const [submitting, setSubmitting] = useState(false);
 
 	const handleSubmit = async (event: SubmitEvent<HTMLFormElement>) => {
@@ -37,6 +38,8 @@ function RouteComponent({ provider, handleSent }: SignInPageProps) {
 			await signIn(provider ?? "password", formData);
 
 			handleSent?.(formData.get("email") as string);
+
+			navigate({ to: "/staff" })
 		} catch (err) {
 			console.error(err);
 			let toastTitle;
@@ -72,6 +75,7 @@ function RouteComponent({ provider, handleSent }: SignInPageProps) {
 							className="flex flex-col gap-6 mt-8"
 							onSubmit={(event) => handleSubmit(event)}
 						>
+							<input name="flow" value="signIn" type="hidden" />
 							<div>
 								<Label htmlFor="email" className="block">
 									Email
