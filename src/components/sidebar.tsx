@@ -58,10 +58,11 @@ const dailyOperationsRoutes: Array<SidebarRouteProps> = [
 	{ id: 2, name: "Prescriptions", icon: ClipboardCheckIcon, href: "/" },
 ];
 
+// oxfmt-ignore
 const customerRoutes: Array<SidebarRouteProps> = [
-	{ id: 1, name: "New Customer", icon: UserAddIcon, href: "/" },
-	{ id: 2, name: "Active Customers", icon: UserSquareIcon, href: "/" },
-	{ id: 3, name: "Blacklisted Customers", icon: UserXIcon, href: "/" },
+	{ id: 1, name: "New Customer", icon: UserAddIcon, href: "/customers/new" },
+	{ id: 2, name: "Active Customers", icon: UserSquareIcon, href: "/customers" },
+	{ id: 3, name: "Blacklisted Customers", icon: UserXIcon, href: "/customers/blacklisted" },
 ];
 
 const inventoryRoutes: Array<SidebarRouteProps> = [
