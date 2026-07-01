@@ -3,13 +3,68 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/forms";
 
+@font-face {
+	font-family: "Kricolage Grotesque"; /** bricolage-grotesque-variable */
+	src:
+		url("/fonts/bricolage-grotesque-variable.woff2") format("woff2"),
+		url("/fonts/bricolage-grotesque.var.woff2") format("woff2"),
+		url("/fonts/bricolage-grotesque-variable.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 100 900;
+}
+
+html {
+	font-family: "Kricolage Grotesque", sans-serif;
+	font-feature-settings: normal;
+	font-variation-settings: "opsz" 24;
+	font-weight: 325;
+	line-height: 1.5;
+}
+
+@utility bubble {
+	font-family: "Fricolage Grotesque", sans-serif;
+	transform-origin: var(--transform-origin);
+	filter: drop-shadow(0 2px 2px oklch(0.65 0.15 150 / 0.1))
+		drop-shadow(0 1px oklch(0.65 0.15 150 / 0.1))
+		drop-shadow(0 -1px oklch(0.65 0.15 150 / 0.1))
+		drop-shadow(-1px 0 oklch(0.65 0.15 150 / 0.1))
+		drop-shadow(1px 0 oklch(0.65 0.15 150 / 0.1));
+}
+
 @layer base {
 	.using-mouse * {
 		outline: none !important;
 	}
+
+	p {
+		font-weight: 325;
+		font-size: 0.90625rem;
+	}
+
+	h2 {
+		font-weight: 450;
+		font-size: 1.0625rem;
+	}
 }
 
 @layer components {
+	/*.bubble {
+		@apply pointer-events-none rounded-lg text-xs font-medium leading-relaxed
+           text-left px-3.5 py-3 text-[#191034] whitespace-normal z-50
+           opacity-0 transition-[opacity,transform] duration-200;
+
+		font-family: "Fricolage Grotesque", sans-serif;
+		width: max-content;
+		width: -moz-max-content;
+		transform-origin: var(--origin);
+
+		filter: drop-shadow(0 2px 2px oklch(0.65 0.15 150 / 0.1))
+			drop-shadow(0 1px oklch(0.65 0.15 150 / 0.1))
+			drop-shadow(0 -1px oklch(0.65 0.15 150 / 0.1))
+			drop-shadow(-1px 0 oklch(0.65 0.15 150 / 0.1))
+			drop-shadow(1px 0 oklch(0.65 0.15 150 / 0.1));
+	}*/
+
 	.button-xs,
 	.button-sm,
 	.button,
@@ -175,29 +230,34 @@
 		outline: none !important;
 	}
 	.btn-primary {
-		--btn-bg-color: #7c3aed;
-		--btn-bg-color-active: #6d28d9;
-		--btn-border-color: rgb(91 33 182 / 0.75);
-		--btn-border-color-active: #5b21b6;
-		--btn-inner-shadow: inset 0 -2px 6px #6d28d9;
-		--btn-inner-shadow-active: inset 0 0 6px 3px #5b21b6;
-		--btn-text-color: white;
-		--btn-text-color-active: white;
-		outline: none !important;
+		--btn-bg-color: #059669; /* emerald-600 */
+		--btn-bg-color-active: #047857; /* emerald-700 */
+		--btn-border-color: rgb(6 78 59 / 0.75); /* emerald-800 with opacity */
+		--btn-border-color-active: #064e3b; /* emerald-800 */
+		--btn-inner-shadow: inset 0 -2px 6px #047857;
+		--btn-inner-shadow-active: inset 0 0 6px 3px #064e3b;
+
+		box-shadow: var(--btn-inner-shadow), var(--btn-shadow);
+		@apply inline-flex bg-(--btn-bg-color) tracking-normal cursor-pointer hover:bg-(--btn-bg-color-active)! outline-none! transition-all duration-200 bg-clip-padding items-center justify-center whitespace-nowrap border border-solid border-(--btn-border-color) text-white! font-btn;
 	}
 	.btn-secondary {
-		/*--btn-bg-color: #ede9fe;
-		--btn-bg-color-active: #ddd6fe;
-		--btn-border-color: rgb(167 139 250 / 0.5);
-		--btn-border-color-active: rgb(167 139 250 / 0.75);
-		--btn-inner-shadow: inset 0 -2px 6px rgb(196 181 253 / 0.5);
-		--btn-inner-shadow-active: inset 0 0 6px 3px rgb(196 181 253 / 0.5);
-		--btn-ring-color: rgb(221 214 254 / 0.75);
-		--btn-text-color: #7c3aed;
-		--btn-text-color-active: #6d28d9;*/
+		--btn-bg-color: oklch(0.9793 0.0207 166.11); /* emerald-50 */
+		--btn-bg-color-active: oklch(0.9505 0.0507 163.05); /* emerald-100 */
+		--btn-border-color: oklch(
+			0.7729 0.1535 163.22 / 50%
+		); /* emerald-400 with opacity */
+		--btn-border-color-active: oklch(0.7729 0.1535 163.22 / 75%);
+		--btn-inner-shadow: inset 0 -2px 6px oklch(0.9049 0.0895 164.15 / 50%); /* emerald-200 with opacity */
+		--btn-inner-shadow-active: inset 0 0 6px 3px
+			oklch(0.9049 0.0895 164.15 / 50%);
+		--btn-ring-color: oklch(
+			0.9505 0.0507 163.05 / 75%
+		); /* emerald-100 with opacity */
+		--btn-text-color: oklch(0.596 0.1274 163.23); /* emerald-600 */
+		--btn-text-color-active: oklch(0.5081 0.1049 165.61); /* emerald-700 */
 		box-shadow:
 			var(--inset-shadow-btn-secondary), var(--shadow-btn-transparent);
-		@apply outline-none! text-btn-text-secondary hover:text-btn-text-secondary;
+		@apply inline-flex bg-(--btn-bg-color) outline-none! text-btn-text-secondary hover:text-btn-text-secondary tracking-normal cursor-pointer hover:bg-(--btn-bg-color-active)! transition-all duration-200 bg-clip-padding items-center justify-center whitespace-nowrap border border-solid border-(--btn-border-color) font-btn;
 	}
 	.btn-translucent {
 		--btn-bg-color: rgb(255 255 255 / 0);
@@ -504,12 +564,12 @@
 		--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0
 			var(--tw-ring-offset-width) var(--tw-ring-offset-color);
 		--tw-ring-shadow: var(--tw-ring-inset) 0 0 0
-			calc(3px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+			calc(20px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 		/*box-shadow:
 			var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
 			var(--tw-shadow, 0 0 #0000);
 		--tw-ring-color: oklch(0.596 0.1274 163.23 / 20%);*/
-		@apply ring-inset ring-brand ring-1;
+		@apply ring-inset ring-brand ring-[1.25px] transition-colors duration-75 ease-in-out;
 	}
 	.input-checkbox,
 	.input-radio {
@@ -586,6 +646,10 @@
 		oklch(0.6744 0.1018 175),
 		oklch(0.8696 0.1517 175)
 	);
+	--color-label: light-dark(
+		oklch(0.8067 0.0959 151.41 / 75%),
+		oklch(0.6667 0.0959 145.06 / 75%)
+	);
 
 	--color-btn-active: oklch(0.919 0.0072 132.91 / 94.18%);
 
@@ -599,10 +663,12 @@
 	--spacing-btn: 2.375rem;
 
 	--text-btn: 14.5px;
+	--text-dialog-header: 17px;
 
 	--radius-btn: 9px; /** 0.5625rem */
 
 	--font-weight-btn: 450;
+	--font-text: 325;
 
 	--inset-shadow-btn: inset 0 -3px 6px -2px var(--color-brand);
 	--inset-shadow-btn-active: inset 0 0 6px oklch(0.8026 0.1517 162.51);
@@ -616,7 +682,9 @@
 		0 5px 5px -2px rgb(91 33 182 / 0.1), 0 2px 4px -2px rgb(91 33 182 / 0.1);
 	--shadow-btn-transparent: 0px 0px transparent;
 
-	--drop-shadow-tooltip: drop-shadow(0 2px 2px oklch(0.7427 0.082 168.78 / 10%))
+	--drop-shadow-tooltip: drop-shadow(
+			0 2px 2px oklch(0.7427 0.082 168.78 / 10%)
+		)
 		drop-shadow(0 1px oklch(0.7427 0.082 168.78 / 10%))
 		drop-shadow(0 -1px oklch(0.7427 0.082 168.78 / 10%))
 		drop-shadow(-1px 0 oklch(0.7427 0.082 168.78 / 10%))

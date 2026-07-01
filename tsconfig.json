@@ -25,6 +25,9 @@
 		"paths": {
 			"~/*": ["./src/*"],
 			"~convex/*": ["./convex/*"],
+			"~dialog": ["./src/components/dialog"],
+			"~input": ["./src/components/input"],
+			"~primitives/*": ["./node_modules/@cloudflare/kumo/primitives/*"],
 		},
 
 		"esModuleInterop": true,

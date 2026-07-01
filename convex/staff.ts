@@ -1,16 +1,23 @@
 import { createAccount } from "@convex-dev/auth/server";
 import { action, query } from "./_generated/server";
+import { v } from "convex/values";
 
 export const addStaff = action({
-	args: {},
-	handler: async (ctx) => {
+	args: {
+		fullName: v.string(),
+		password: v.string(),
+		email: v.string(),
+		phoneNumber: v.string(),
+		isActive: v.boolean(),
+	},
+	handler: async (ctx, args) => {
 		const account = await createAccount(ctx, {
 			provider: "password",
-			account: { id: "naa@gmail.com", secret: "12345678" },
+			account: { id: args.email, secret: args.password },
 			profile: {
-				email: "naa@gmail.com",
-				name: "Naa",
-				phone: "+233244567890",
+				email: args.email,
+				name: args.fullName,
+				phone: args.phoneNumber,
 			},
 		});
 
