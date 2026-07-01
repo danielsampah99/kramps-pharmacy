@@ -506,7 +506,7 @@ html {
 	}
 
 	.input-text,
-	.input-select {
+	.input-text-area .input-select {
 		display: block;
 		width: 100%;
 		border-radius: 0.5rem;
@@ -523,6 +523,7 @@ html {
 	.input-text,
 	.input-select,
 	.input-checkbox,
+	.input-text-area,
 	.input-radio {
 		--tw-border-opacity: 1;
 
@@ -553,7 +554,13 @@ html {
 		transition-duration: 150ms;
 		@apply border-gray-300 shadow-xs border border-solid p-2.5 text-base h-[43.75px];
 	}
+
+	.input-text-area {
+		@apply h-auto min-h-[43.75px];
+	}
+	
 	.input-text:focus,
+	.input-text-area:focus,
 	.input-select:focus,
 	.input-checkbox:focus,
 	.input-radio:focus {
@@ -583,7 +590,8 @@ html {
 	.input-radio:focus {
 		--tw-ring-offset-width: 0px;
 	}
-	.input-text::-moz-placeholder {
+	.input-text::-moz-placeholder,
+	.input-text-area::-moz-placeholder {
 		color: rgb(34 24 60 / 0.5);
 		-moz-transition-property:
 			color, background-color, border-color, text-decoration-color, fill,
@@ -594,7 +602,8 @@ html {
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		transition-duration: 150ms;
 	}
-	.input-text::placeholder {
+	.input-text::placeholder,
+	.input-text-area::placeholder {
 		color: rgb(34 24 60 / 0.5);
 		transition-property:
 			color, background-color, border-color, text-decoration-color, fill,

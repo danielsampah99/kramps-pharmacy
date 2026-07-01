@@ -65,7 +65,7 @@ const customerRoutes: Array<SidebarRouteProps> = [
 ];
 
 const inventoryRoutes: Array<SidebarRouteProps> = [
-	{ id: 1, name: "Inventory", icon: DatabaseIcon, href: "/" },
+	{ id: 1, name: "Inventory", icon: DatabaseIcon, href: "/inventory" },
 	{ id: 2, name: "Expiry Tracker", icon: TimerIcon, href: "/" },
 	{ id: 3, name: "Purchase Orders", icon: InboxInIcon, href: "/" },
 	{ id: 4, name: "Suppliers", icon: BuildingIcon, href: "/" },
