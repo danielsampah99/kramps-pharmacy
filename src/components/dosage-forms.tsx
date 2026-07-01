@@ -9,6 +9,7 @@ import { Input, Label, TextArea } from "./input";
 import { format, formatDistanceToNow } from "date-fns";
 import { FunctionArgs, FunctionReturnType } from "convex/server";
 import { EditIcon, PlusSquareIcon, TrashIcon } from "./icons";
+import { Image } from "@unpic/react";
 
 export const DosageForms = () => {
 	const dosageForms = useQuery(api.dosageForms.listDosageForms);
@@ -46,7 +47,7 @@ export const DosageForms = () => {
 					{dosageForms === undefined ? (
 						<div>Loading...</div>
 					) : dosageForms.length === 0 ? (
-						<div>No dosage forms</div>
+						<EmtpyDosages />
 					) : (
 						<ul className=" space-y-2.5">
 							{dosageForms.map((df) => (
@@ -174,7 +175,10 @@ const DosageForm = ({ ...props }: DosageFormProps) => {
 
 	return (
 		<form
-			className={cn("space-y-4 py-4 border-solid border-gray-200 border-y", !props.dosageFormId && 'px-2 lg:px-4')}
+			className={cn(
+				"space-y-4 py-4 border-solid border-gray-200 border-y",
+				!props.dosageFormId && "px-2 lg:px-4",
+			)}
 			onSubmit={(event) => {
 				event.preventDefault();
 				event.stopPropagation();
@@ -241,3 +245,22 @@ const DosageForm = ({ ...props }: DosageFormProps) => {
 		</form>
 	);
 };
+
+const EmtpyDosages = () => (
+	<div className="flex flex-col items-center justify-center gap-4 pb-6">
+		<div className="min-w-0 w-full">
+			<Image
+				src="/no-dosage-forms.png"
+				alt="Illustration for the empty state"
+				layout="fullWidth"
+			/>
+		</div>
+
+		<div className="text-emerald-900 font-normal text-sm text-center ">
+			<h4>No Dosage Forms</h4>
+			<p className="font-light text-gray-500 max-w-80 text-xs">
+				No dosage forms added. Add one using the plus button above
+			</p>
+		</div>
+	</div>
+);

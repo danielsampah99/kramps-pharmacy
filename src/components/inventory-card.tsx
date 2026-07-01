@@ -1,3 +1,4 @@
+import { SearchIcon } from "./icons";
 import { Input } from "./input";
 
 export const Inventory = () => (
@@ -32,14 +33,12 @@ export const Inventory = () => (
 								Search
 							</label>
 							<div className="relative w-full">
-								<div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-									<span
-										data-phx-id="m48-phx-GL4tQPiMwwLzbRdh"
-										className="hero-magnifying-glass h-5 w-5 bg-gray-400"
-									></span>
+								<div className="absolute inset-y-0 left-0 ml-3 flex items-center pointer-events-none">
+									<SearchIcon className="size-5 stroke-gray-400 fill-white stroke-[1.5px]" />
+									
 								</div>
 								<Input
-									className="block w-full rounded-lg border-gray-300 pl-10 pr-8 focus:border-green-500 focus:ring-green-500 sm:text-sm"
+									className="block w-full  rounded-lg border-gray-300 pl-10! pr-8 focus:border-green-500 focus:ring-green-500 sm:text-sm"
 									data-slash-to-focus=""
 									id="apps_filters_name"
 									name="apps_search[name]"
