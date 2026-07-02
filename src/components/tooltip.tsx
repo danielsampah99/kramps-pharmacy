@@ -1,6 +1,7 @@
 import { Tooltip as KTooltip } from "@cloudflare/kumo/primitives/tooltip";
 
 import { cn } from "@cloudflare/kumo/utils";
+import { format, formatDistanceToNow } from "date-fns";
 
 export function TooltipProvider({
 	delay = 0,
@@ -60,3 +61,21 @@ export const TooltipContent = ({
 		</KTooltip.Portal>
 	);
 };
+
+export const DateTooltip = ({ date }: { date: Date }) => (
+	<Tooltip>
+		<TooltipTrigger
+			render={
+				<time dateTime={date.toISOString()}>
+					{formatDistanceToNow(date, {
+						addSuffix: true,
+						includeSeconds: true,
+					})}
+				</time>
+			}
+		/>
+		<TooltipContent className={"bubble-t! tail font-btn text-sm max-w-sm"}>
+			{format(date, "PPpp")}
+		</TooltipContent>
+	</Tooltip>
+);
