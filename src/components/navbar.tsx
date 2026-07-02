@@ -9,10 +9,13 @@ import { UserIcon } from "./icons/user";
 import { SettingsIcon } from "./icons/settings";
 import { SignOutIcon } from "./icons/signout";
 import { useAuthActions } from "@convex-dev/auth/react";
+import { useCurrentUser } from "~/hooks/use-current-user";
 
 export const Navbar = () => {
 	const { signOut } = useAuthActions();
 	const navigate = useNavigate();
+
+	const { user } = useCurrentUser();
 
 	const handleSignOut = () => {
 		void signOut();
@@ -59,8 +62,8 @@ export const Navbar = () => {
 							<Popover.Title className="font-normal">
 								Signed in as
 							</Popover.Title>
-							<Popover.Description className="truncate font-semibold">
-								danielsampah99@gmail.com
+							<Popover.Description className="truncate text-emerald-900 lg:text-sm font-[575] text-[0.8rem]">
+								{user.email}
 							</Popover.Description>
 						</div>
 
