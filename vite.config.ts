@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 import viteReact from "@vitejs/plugin-react";
 import { devtools } from "@tanstack/devtools-vite";
+import { nitro } from 'nitro/vite'
 // import { fileURLToPath } from "url";
 
 export default defineConfig({
@@ -27,5 +28,5 @@ export default defineConfig({
 		// 	),
 		// },
 	},
-	plugins: [tailwindcss(), devtools(), tanstackStart(), viteReact()],
+	plugins: [tailwindcss(), devtools(), tanstackStart(), viteReact(), nitro()],
 });

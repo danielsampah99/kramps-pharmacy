@@ -29,8 +29,10 @@
 		"convex": "^1.36.1",
 		"date-fns": "^4.4.0",
 		"jose": "^6.2.3",
+		"nitro": "3.0.260610-beta",
 		"react": "^19.2.5",
-		"react-dom": "^19.2.5"
+		"react-dom": "^19.2.5",
+		"svrx": "^0.0.10"
 	},
 	"devDependencies": {
 		"@convex-dev/eslint-plugin": "^2.0.0",
