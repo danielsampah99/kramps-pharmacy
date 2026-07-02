@@ -16,9 +16,9 @@ import { Route as AuthSignInRouteImport } from './routes/_auth.sign-in'
 import { Route as AppStaffRouteImport } from './routes/_app/staff'
 import { Route as AppInventoryRouteImport } from './routes/_app/inventory'
 import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
-import { Route as AppCustomersRouteImport } from './routes/_app/customers'
+import { Route as AppCustomersIndexRouteImport } from './routes/_app/customers.index'
 import { Route as AppCustomersNewRouteImport } from './routes/_app/customers.new'
-import { Route as AppCustomersBlacklistedRouteImport } from './routes/_app/customers.blacklisted'
+import { Route as AppCustomersBlacklistRouteImport } from './routes/_app/customers.blacklist'
 
 const AuthRoute = AuthRouteImport.update({
   id: '/_auth',
@@ -53,88 +53,88 @@ const AppDashboardRoute = AppDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AppRouteRoute,
 } as any)
-const AppCustomersRoute = AppCustomersRouteImport.update({
-  id: '/customers',
-  path: '/customers',
+const AppCustomersIndexRoute = AppCustomersIndexRouteImport.update({
+  id: '/customers/',
+  path: '/customers/',
   getParentRoute: () => AppRouteRoute,
 } as any)
 const AppCustomersNewRoute = AppCustomersNewRouteImport.update({
-  id: '/new',
-  path: '/new',
-  getParentRoute: () => AppCustomersRoute,
+  id: '/customers/new',
+  path: '/customers/new',
+  getParentRoute: () => AppRouteRoute,
 } as any)
-const AppCustomersBlacklistedRoute = AppCustomersBlacklistedRouteImport.update({
-  id: '/blacklisted',
-  path: '/blacklisted',
-  getParentRoute: () => AppCustomersRoute,
+const AppCustomersBlacklistRoute = AppCustomersBlacklistRouteImport.update({
+  id: '/customers/blacklist',
+  path: '/customers/blacklist',
+  getParentRoute: () => AppRouteRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/customers': typeof AppCustomersRouteWithChildren
   '/dashboard': typeof AppDashboardRoute
   '/inventory': typeof AppInventoryRoute
   '/staff': typeof AppStaffRoute
   '/sign-in': typeof AuthSignInRoute
-  '/customers/blacklisted': typeof AppCustomersBlacklistedRoute
+  '/customers/blacklist': typeof AppCustomersBlacklistRoute
   '/customers/new': typeof AppCustomersNewRoute
+  '/customers/': typeof AppCustomersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/customers': typeof AppCustomersRouteWithChildren
   '/dashboard': typeof AppDashboardRoute
   '/inventory': typeof AppInventoryRoute
   '/staff': typeof AppStaffRoute
   '/sign-in': typeof AuthSignInRoute
-  '/customers/blacklisted': typeof AppCustomersBlacklistedRoute
+  '/customers/blacklist': typeof AppCustomersBlacklistRoute
   '/customers/new': typeof AppCustomersNewRoute
+  '/customers': typeof AppCustomersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_app': typeof AppRouteRouteWithChildren
   '/_auth': typeof AuthRouteWithChildren
-  '/_app/customers': typeof AppCustomersRouteWithChildren
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/inventory': typeof AppInventoryRoute
   '/_app/staff': typeof AppStaffRoute
   '/_auth/sign-in': typeof AuthSignInRoute
-  '/_app/customers/blacklisted': typeof AppCustomersBlacklistedRoute
+  '/_app/customers/blacklist': typeof AppCustomersBlacklistRoute
   '/_app/customers/new': typeof AppCustomersNewRoute
+  '/_app/customers/': typeof AppCustomersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/customers'
     | '/dashboard'
     | '/inventory'
     | '/staff'
     | '/sign-in'
-    | '/customers/blacklisted'
+    | '/customers/blacklist'
     | '/customers/new'
+    | '/customers/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/customers'
     | '/dashboard'
     | '/inventory'
     | '/staff'
     | '/sign-in'
-    | '/customers/blacklisted'
+    | '/customers/blacklist'
     | '/customers/new'
+    | '/customers'
   id:
     | '__root__'
     | '/'
     | '/_app'
     | '/_auth'
-    | '/_app/customers'
     | '/_app/dashboard'
     | '/_app/inventory'
     | '/_app/staff'
     | '/_auth/sign-in'
-    | '/_app/customers/blacklisted'
+    | '/_app/customers/blacklist'
     | '/_app/customers/new'
+    | '/_app/customers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -194,56 +194,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRouteRoute
     }
-    '/_app/customers': {
-      id: '/_app/customers'
+    '/_app/customers/': {
+      id: '/_app/customers/'
       path: '/customers'
-      fullPath: '/customers'
-      preLoaderRoute: typeof AppCustomersRouteImport
+      fullPath: '/customers/'
+      preLoaderRoute: typeof AppCustomersIndexRouteImport
       parentRoute: typeof AppRouteRoute
     }
     '/_app/customers/new': {
       id: '/_app/customers/new'
-      path: '/new'
+      path: '/customers/new'
       fullPath: '/customers/new'
       preLoaderRoute: typeof AppCustomersNewRouteImport
-      parentRoute: typeof AppCustomersRoute
+      parentRoute: typeof AppRouteRoute
     }
-    '/_app/customers/blacklisted': {
-      id: '/_app/customers/blacklisted'
-      path: '/blacklisted'
-      fullPath: '/customers/blacklisted'
-      preLoaderRoute: typeof AppCustomersBlacklistedRouteImport
-      parentRoute: typeof AppCustomersRoute
+    '/_app/customers/blacklist': {
+      id: '/_app/customers/blacklist'
+      path: '/customers/blacklist'
+      fullPath: '/customers/blacklist'
+      preLoaderRoute: typeof AppCustomersBlacklistRouteImport
+      parentRoute: typeof AppRouteRoute
     }
   }
 }
 
-interface AppCustomersRouteChildren {
-  AppCustomersBlacklistedRoute: typeof AppCustomersBlacklistedRoute
-  AppCustomersNewRoute: typeof AppCustomersNewRoute
-}
-
-const AppCustomersRouteChildren: AppCustomersRouteChildren = {
-  AppCustomersBlacklistedRoute: AppCustomersBlacklistedRoute,
-  AppCustomersNewRoute: AppCustomersNewRoute,
-}
-
-const AppCustomersRouteWithChildren = AppCustomersRoute._addFileChildren(
-  AppCustomersRouteChildren,
-)
-
 interface AppRouteRouteChildren {
-  AppCustomersRoute: typeof AppCustomersRouteWithChildren
   AppDashboardRoute: typeof AppDashboardRoute
   AppInventoryRoute: typeof AppInventoryRoute
   AppStaffRoute: typeof AppStaffRoute
+  AppCustomersBlacklistRoute: typeof AppCustomersBlacklistRoute
+  AppCustomersNewRoute: typeof AppCustomersNewRoute
+  AppCustomersIndexRoute: typeof AppCustomersIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
-  AppCustomersRoute: AppCustomersRouteWithChildren,
   AppDashboardRoute: AppDashboardRoute,
   AppInventoryRoute: AppInventoryRoute,
   AppStaffRoute: AppStaffRoute,
+  AppCustomersBlacklistRoute: AppCustomersBlacklistRoute,
+  AppCustomersNewRoute: AppCustomersNewRoute,
+  AppCustomersIndexRoute: AppCustomersIndexRoute,
 }
 
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(

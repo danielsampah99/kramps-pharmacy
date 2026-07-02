@@ -39,9 +39,12 @@ const SidebarRouteItem = ({
 		className="mt-0.5 group w-14 lg:w-auto shrink-0 lg:shrink flex flex-col lg:flex-row gap-0.5 lg:gap-2.5 items-center
 		justify-items-center lg:justify-items-start px-1 py-1 lg:px-2.5 lg:py-2 rounded-lg transition-colors text-white/60
 		hover:text-white lg:hover:bg-transparent lg:hover:text-emerald-600 lg:text-emerald-900"
+		activeOptions={{
+			exact: true
+		}}
 		activeProps={{
 			className:
-				"transition-colors text-white bg-emerald-600/90 lg:bg-emerald-500/20 lg:text-emerald-700 hover:bg-emerald-600/90 hover:text-emerald-700",
+				"transition-colors text-white bg-emerald-600/90 lg:hover:bg-emerald-500/20 lg:hover:text-emerald-700 lg:bg-emerald-500/20 lg:text-emerald-700 hover:bg-emerald-600/90 hover:text-emerald-700",
 		}}
 	>
 		<span className="size-5 lg:size-6 flex items-center justify-center shrink-0 lg:bg-linear-to-b lg:from-white/75 lg:to-emerald-100/75 lg:rounded-md lg:shadow-sm lg:shadow-emerald-800/10 lg:ring-1 lg:ring-emerald-800/10">
@@ -62,7 +65,7 @@ const dailyOperationsRoutes: Array<SidebarRouteProps> = [
 const customerRoutes: Array<SidebarRouteProps> = [
 	{ id: 1, name: "New Customer", icon: UserAddIcon, href: "/customers/new" },
 	{ id: 2, name: "Active Customers", icon: UserSquareIcon, href: "/customers" },
-	{ id: 3, name: "Blacklisted Customers", icon: UserXIcon, href: "/customers/blacklisted" },
+	{ id: 3, name: "Blacklisted Customers", icon: UserXIcon, href: "/customers/blacklist" },
 ];
 
 const inventoryRoutes: Array<SidebarRouteProps> = [

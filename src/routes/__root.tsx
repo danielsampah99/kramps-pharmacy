@@ -47,28 +47,30 @@ const convex = new ConvexReactClient(import.meta.env.VITE_CONVEX_URL as string);
 function RootComponent() {
 	return (
 		<RootDocument>
-			<ConvexAuthProvider client={convex}>
-				<TooltipProvider delay={0}>
-					<Outlet />
-				</TooltipProvider>
-				<TanStackDevtools
-					plugins={[
-						{
-							name: "Query Devtools",
-							render: <ReactQueryDevtoolsPanel />,
-						},
-						{
-							name: "Router Devtools",
-							render: <TanStackRouterDevtoolsPanel />,
-						},
-						{
-							name: "Form Devtools",
-							render: <FormDevtoolsPanel />,
-						},
-						tableDevtoolsPlugin(),
-					]}
-				/>
-			</ConvexAuthProvider>
+			<Toasty>
+				<ConvexAuthProvider client={convex}>
+					<TooltipProvider delay={0}>
+						<Outlet />
+					</TooltipProvider>
+					<TanStackDevtools
+						plugins={[
+							{
+								name: "Query Devtools",
+								render: <ReactQueryDevtoolsPanel />,
+							},
+							{
+								name: "Router Devtools",
+								render: <TanStackRouterDevtoolsPanel />,
+							},
+							{
+								name: "Form Devtools",
+								render: <FormDevtoolsPanel />,
+							},
+							tableDevtoolsPlugin(),
+						]}
+					/>
+				</ConvexAuthProvider>
+			</Toasty>
 		</RootDocument>
 	);
 }

@@ -41,7 +41,7 @@ export const updateDosageForm = mutation({
 			updatedAt: new Date().toISOString(),
 			updatedBy: userId,
 			deletedAt: null,
-			deletedBy: null
+			deletedBy: null,
 		});
 	},
 });
@@ -83,7 +83,7 @@ export const listDosageForms = query({
 	},
 });
 
-async function getUserInfo(ctx: QueryCtx, userId: Id<"users"> | null) {
+export async function getUserInfo(ctx: QueryCtx, userId: Id<"users"> | null) {
 	if (userId === null) {
 		return null;
 	}
@@ -102,7 +102,7 @@ async function getUserInfo(ctx: QueryCtx, userId: Id<"users"> | null) {
 	};
 }
 
-async function getUserId(ctx: MutationCtx) {
+export async function getUserId(ctx: MutationCtx) {
 	const userId = await getAuthUserId(ctx);
 
 	if (userId === null) {

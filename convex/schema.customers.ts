@@ -22,4 +22,4 @@ export const customersTable = defineTable({
 	updatedBy: v.nullable(v.id("users")),
 	deletedAt: v.nullable(v.string()),
 	deletedBy: v.nullable(v.id("users")),
-});
+}).index("by_blacklisted", ["blacklistedAt"]);

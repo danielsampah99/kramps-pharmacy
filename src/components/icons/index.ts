@@ -1,3 +1,4 @@
+export { AlertCircleIcon } from "./alert-circle.tsx";
 export { BagIcon } from "./bag.tsx";
 export { BuildingIcon } from "./building.tsx";
 export { CartIcon } from "./cart.tsx";
@@ -9,6 +10,7 @@ export { DatabaseIcon } from "./database.tsx";
 export { EditIcon } from "./edit.tsx";
 export { IdIcon } from "./id.tsx";
 export { InboxInIcon } from "./inbox-in.tsx";
+export { InfoCircleIcon } from "./info-circle.tsx";
 export { LockIcon } from "./lock.tsx";
 export { PlusSquareIcon } from "./plus-square.tsx";
 export { SearchIcon } from "./search.tsx";

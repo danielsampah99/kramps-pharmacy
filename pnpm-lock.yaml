@@ -41,6 +41,9 @@ importers:
       '@tanstack/react-start':
         specifier: ^1.167.41
         version: 1.168.26(esbuild@0.27.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)(rolldown@1.1.3)(rollup@4.62.2)(vite@8.1.0(@types/node@26.0.1)(esbuild@0.27.0)(jiti@2.7.0))
+      '@tanstack/react-store':
+        specifier: ^0.11.0
+        version: 0.11.0(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       '@tanstack/react-table':
         specifier: 9.0.0-beta.21
         version: 9.0.0-beta.21(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
