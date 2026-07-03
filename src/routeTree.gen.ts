@@ -8,262 +8,262 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from "./routes/__root";
-import { Route as AuthRouteImport } from "./routes/_auth";
-import { Route as AppRouteRouteImport } from "./routes/_app/route";
-import { Route as IndexRouteImport } from "./routes/index";
-import { Route as AuthSignInRouteImport } from "./routes/_auth.sign-in";
-import { Route as AppStaffRouteImport } from "./routes/_app/staff";
-import { Route as AppInventoryRouteImport } from "./routes/_app/inventory";
-import { Route as AppDashboardRouteImport } from "./routes/_app/dashboard";
-import { Route as AppCustomersIndexRouteImport } from "./routes/_app/customers.index";
-import { Route as AppCustomersNewRouteImport } from "./routes/_app/customers.new";
-import { Route as AppCustomersBlacklistRouteImport } from "./routes/_app/customers.blacklist";
+import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthRouteImport } from './routes/_auth'
+import { Route as AppRouteRouteImport } from './routes/_app/route'
+import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthSignInRouteImport } from './routes/_auth.sign-in'
+import { Route as AppStaffRouteImport } from './routes/_app/staff'
+import { Route as AppInventoryRouteImport } from './routes/_app/inventory'
+import { Route as AppDashboardRouteImport } from './routes/_app/dashboard'
+import { Route as AppCustomersIndexRouteImport } from './routes/_app/customers.index'
+import { Route as AppCustomersNewRouteImport } from './routes/_app/customers.new'
+import { Route as AppCustomersBlacklistRouteImport } from './routes/_app/customers.blacklist'
 
 const AuthRoute = AuthRouteImport.update({
-	id: "/_auth",
-	getParentRoute: () => rootRouteImport,
-} as any);
+  id: '/_auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppRouteRoute = AppRouteRouteImport.update({
-	id: "/_app",
-	getParentRoute: () => rootRouteImport,
-} as any);
+  id: '/_app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
-	id: "/",
-	path: "/",
-	getParentRoute: () => rootRouteImport,
-} as any);
+  id: '/',
+  path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthSignInRoute = AuthSignInRouteImport.update({
-	id: "/sign-in",
-	path: "/sign-in",
-	getParentRoute: () => AuthRoute,
-} as any);
+  id: '/sign-in',
+  path: '/sign-in',
+  getParentRoute: () => AuthRoute,
+} as any)
 const AppStaffRoute = AppStaffRouteImport.update({
-	id: "/staff",
-	path: "/staff",
-	getParentRoute: () => AppRouteRoute,
-} as any);
+  id: '/staff',
+  path: '/staff',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppInventoryRoute = AppInventoryRouteImport.update({
-	id: "/inventory",
-	path: "/inventory",
-	getParentRoute: () => AppRouteRoute,
-} as any);
+  id: '/inventory',
+  path: '/inventory',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppDashboardRoute = AppDashboardRouteImport.update({
-	id: "/dashboard",
-	path: "/dashboard",
-	getParentRoute: () => AppRouteRoute,
-} as any);
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppCustomersIndexRoute = AppCustomersIndexRouteImport.update({
-	id: "/customers/",
-	path: "/customers/",
-	getParentRoute: () => AppRouteRoute,
-} as any);
+  id: '/customers/',
+  path: '/customers/',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppCustomersNewRoute = AppCustomersNewRouteImport.update({
-	id: "/customers/new",
-	path: "/customers/new",
-	getParentRoute: () => AppRouteRoute,
-} as any);
+  id: '/customers/new',
+  path: '/customers/new',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 const AppCustomersBlacklistRoute = AppCustomersBlacklistRouteImport.update({
-	id: "/customers/blacklist",
-	path: "/customers/blacklist",
-	getParentRoute: () => AppRouteRoute,
-} as any);
+  id: '/customers/blacklist',
+  path: '/customers/blacklist',
+  getParentRoute: () => AppRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
-	"/": typeof IndexRoute;
-	"/dashboard": typeof AppDashboardRoute;
-	"/inventory": typeof AppInventoryRoute;
-	"/staff": typeof AppStaffRoute;
-	"/sign-in": typeof AuthSignInRoute;
-	"/customers/blacklist": typeof AppCustomersBlacklistRoute;
-	"/customers/new": typeof AppCustomersNewRoute;
-	"/customers/": typeof AppCustomersIndexRoute;
+  '/': typeof IndexRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/inventory': typeof AppInventoryRoute
+  '/staff': typeof AppStaffRoute
+  '/sign-in': typeof AuthSignInRoute
+  '/customers/blacklist': typeof AppCustomersBlacklistRoute
+  '/customers/new': typeof AppCustomersNewRoute
+  '/customers/': typeof AppCustomersIndexRoute
 }
 export interface FileRoutesByTo {
-	"/": typeof IndexRoute;
-	"/dashboard": typeof AppDashboardRoute;
-	"/inventory": typeof AppInventoryRoute;
-	"/staff": typeof AppStaffRoute;
-	"/sign-in": typeof AuthSignInRoute;
-	"/customers/blacklist": typeof AppCustomersBlacklistRoute;
-	"/customers/new": typeof AppCustomersNewRoute;
-	"/customers": typeof AppCustomersIndexRoute;
+  '/': typeof IndexRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/inventory': typeof AppInventoryRoute
+  '/staff': typeof AppStaffRoute
+  '/sign-in': typeof AuthSignInRoute
+  '/customers/blacklist': typeof AppCustomersBlacklistRoute
+  '/customers/new': typeof AppCustomersNewRoute
+  '/customers': typeof AppCustomersIndexRoute
 }
 export interface FileRoutesById {
-	__root__: typeof rootRouteImport;
-	"/": typeof IndexRoute;
-	"/_app": typeof AppRouteRouteWithChildren;
-	"/_auth": typeof AuthRouteWithChildren;
-	"/_app/dashboard": typeof AppDashboardRoute;
-	"/_app/inventory": typeof AppInventoryRoute;
-	"/_app/staff": typeof AppStaffRoute;
-	"/_auth/sign-in": typeof AuthSignInRoute;
-	"/_app/customers/blacklist": typeof AppCustomersBlacklistRoute;
-	"/_app/customers/new": typeof AppCustomersNewRoute;
-	"/_app/customers/": typeof AppCustomersIndexRoute;
+  __root__: typeof rootRouteImport
+  '/': typeof IndexRoute
+  '/_app': typeof AppRouteRouteWithChildren
+  '/_auth': typeof AuthRouteWithChildren
+  '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/inventory': typeof AppInventoryRoute
+  '/_app/staff': typeof AppStaffRoute
+  '/_auth/sign-in': typeof AuthSignInRoute
+  '/_app/customers/blacklist': typeof AppCustomersBlacklistRoute
+  '/_app/customers/new': typeof AppCustomersNewRoute
+  '/_app/customers/': typeof AppCustomersIndexRoute
 }
 export interface FileRouteTypes {
-	fileRoutesByFullPath: FileRoutesByFullPath;
-	fullPaths:
-		| "/"
-		| "/dashboard"
-		| "/inventory"
-		| "/staff"
-		| "/sign-in"
-		| "/customers/blacklist"
-		| "/customers/new"
-		| "/customers/";
-	fileRoutesByTo: FileRoutesByTo;
-	to:
-		| "/"
-		| "/dashboard"
-		| "/inventory"
-		| "/staff"
-		| "/sign-in"
-		| "/customers/blacklist"
-		| "/customers/new"
-		| "/customers";
-	id:
-		| "__root__"
-		| "/"
-		| "/_app"
-		| "/_auth"
-		| "/_app/dashboard"
-		| "/_app/inventory"
-		| "/_app/staff"
-		| "/_auth/sign-in"
-		| "/_app/customers/blacklist"
-		| "/_app/customers/new"
-		| "/_app/customers/";
-	fileRoutesById: FileRoutesById;
+  fileRoutesByFullPath: FileRoutesByFullPath
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/inventory'
+    | '/staff'
+    | '/sign-in'
+    | '/customers/blacklist'
+    | '/customers/new'
+    | '/customers/'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/dashboard'
+    | '/inventory'
+    | '/staff'
+    | '/sign-in'
+    | '/customers/blacklist'
+    | '/customers/new'
+    | '/customers'
+  id:
+    | '__root__'
+    | '/'
+    | '/_app'
+    | '/_auth'
+    | '/_app/dashboard'
+    | '/_app/inventory'
+    | '/_app/staff'
+    | '/_auth/sign-in'
+    | '/_app/customers/blacklist'
+    | '/_app/customers/new'
+    | '/_app/customers/'
+  fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-	IndexRoute: typeof IndexRoute;
-	AppRouteRoute: typeof AppRouteRouteWithChildren;
-	AuthRoute: typeof AuthRouteWithChildren;
+  IndexRoute: typeof IndexRoute
+  AppRouteRoute: typeof AppRouteRouteWithChildren
+  AuthRoute: typeof AuthRouteWithChildren
 }
 
-declare module "@tanstack/react-router" {
-	interface FileRoutesByPath {
-		"/_auth": {
-			id: "/_auth";
-			path: "";
-			fullPath: "/";
-			preLoaderRoute: typeof AuthRouteImport;
-			parentRoute: typeof rootRouteImport;
-		};
-		"/_app": {
-			id: "/_app";
-			path: "";
-			fullPath: "/";
-			preLoaderRoute: typeof AppRouteRouteImport;
-			parentRoute: typeof rootRouteImport;
-		};
-		"/": {
-			id: "/";
-			path: "/";
-			fullPath: "/";
-			preLoaderRoute: typeof IndexRouteImport;
-			parentRoute: typeof rootRouteImport;
-		};
-		"/_auth/sign-in": {
-			id: "/_auth/sign-in";
-			path: "/sign-in";
-			fullPath: "/sign-in";
-			preLoaderRoute: typeof AuthSignInRouteImport;
-			parentRoute: typeof AuthRoute;
-		};
-		"/_app/staff": {
-			id: "/_app/staff";
-			path: "/staff";
-			fullPath: "/staff";
-			preLoaderRoute: typeof AppStaffRouteImport;
-			parentRoute: typeof AppRouteRoute;
-		};
-		"/_app/inventory": {
-			id: "/_app/inventory";
-			path: "/inventory";
-			fullPath: "/inventory";
-			preLoaderRoute: typeof AppInventoryRouteImport;
-			parentRoute: typeof AppRouteRoute;
-		};
-		"/_app/dashboard": {
-			id: "/_app/dashboard";
-			path: "/dashboard";
-			fullPath: "/dashboard";
-			preLoaderRoute: typeof AppDashboardRouteImport;
-			parentRoute: typeof AppRouteRoute;
-		};
-		"/_app/customers/": {
-			id: "/_app/customers/";
-			path: "/customers";
-			fullPath: "/customers/";
-			preLoaderRoute: typeof AppCustomersIndexRouteImport;
-			parentRoute: typeof AppRouteRoute;
-		};
-		"/_app/customers/new": {
-			id: "/_app/customers/new";
-			path: "/customers/new";
-			fullPath: "/customers/new";
-			preLoaderRoute: typeof AppCustomersNewRouteImport;
-			parentRoute: typeof AppRouteRoute;
-		};
-		"/_app/customers/blacklist": {
-			id: "/_app/customers/blacklist";
-			path: "/customers/blacklist";
-			fullPath: "/customers/blacklist";
-			preLoaderRoute: typeof AppCustomersBlacklistRouteImport;
-			parentRoute: typeof AppRouteRoute;
-		};
-	}
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/_auth': {
+      id: '/_auth'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AppRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_auth/sign-in': {
+      id: '/_auth/sign-in'
+      path: '/sign-in'
+      fullPath: '/sign-in'
+      preLoaderRoute: typeof AuthSignInRouteImport
+      parentRoute: typeof AuthRoute
+    }
+    '/_app/staff': {
+      id: '/_app/staff'
+      path: '/staff'
+      fullPath: '/staff'
+      preLoaderRoute: typeof AppStaffRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/inventory': {
+      id: '/_app/inventory'
+      path: '/inventory'
+      fullPath: '/inventory'
+      preLoaderRoute: typeof AppInventoryRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/dashboard': {
+      id: '/_app/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/customers/': {
+      id: '/_app/customers/'
+      path: '/customers'
+      fullPath: '/customers/'
+      preLoaderRoute: typeof AppCustomersIndexRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/customers/new': {
+      id: '/_app/customers/new'
+      path: '/customers/new'
+      fullPath: '/customers/new'
+      preLoaderRoute: typeof AppCustomersNewRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+    '/_app/customers/blacklist': {
+      id: '/_app/customers/blacklist'
+      path: '/customers/blacklist'
+      fullPath: '/customers/blacklist'
+      preLoaderRoute: typeof AppCustomersBlacklistRouteImport
+      parentRoute: typeof AppRouteRoute
+    }
+  }
 }
 
 interface AppRouteRouteChildren {
-	AppDashboardRoute: typeof AppDashboardRoute;
-	AppInventoryRoute: typeof AppInventoryRoute;
-	AppStaffRoute: typeof AppStaffRoute;
-	AppCustomersBlacklistRoute: typeof AppCustomersBlacklistRoute;
-	AppCustomersNewRoute: typeof AppCustomersNewRoute;
-	AppCustomersIndexRoute: typeof AppCustomersIndexRoute;
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppInventoryRoute: typeof AppInventoryRoute
+  AppStaffRoute: typeof AppStaffRoute
+  AppCustomersBlacklistRoute: typeof AppCustomersBlacklistRoute
+  AppCustomersNewRoute: typeof AppCustomersNewRoute
+  AppCustomersIndexRoute: typeof AppCustomersIndexRoute
 }
 
 const AppRouteRouteChildren: AppRouteRouteChildren = {
-	AppDashboardRoute: AppDashboardRoute,
-	AppInventoryRoute: AppInventoryRoute,
-	AppStaffRoute: AppStaffRoute,
-	AppCustomersBlacklistRoute: AppCustomersBlacklistRoute,
-	AppCustomersNewRoute: AppCustomersNewRoute,
-	AppCustomersIndexRoute: AppCustomersIndexRoute,
-};
+  AppDashboardRoute: AppDashboardRoute,
+  AppInventoryRoute: AppInventoryRoute,
+  AppStaffRoute: AppStaffRoute,
+  AppCustomersBlacklistRoute: AppCustomersBlacklistRoute,
+  AppCustomersNewRoute: AppCustomersNewRoute,
+  AppCustomersIndexRoute: AppCustomersIndexRoute,
+}
 
 const AppRouteRouteWithChildren = AppRouteRoute._addFileChildren(
-	AppRouteRouteChildren,
-);
+  AppRouteRouteChildren,
+)
 
 interface AuthRouteChildren {
-	AuthSignInRoute: typeof AuthSignInRoute;
+  AuthSignInRoute: typeof AuthSignInRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
-	AuthSignInRoute: AuthSignInRoute,
-};
+  AuthSignInRoute: AuthSignInRoute,
+}
 
-const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren);
+const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
-	IndexRoute: IndexRoute,
-	AppRouteRoute: AppRouteRouteWithChildren,
-	AuthRoute: AuthRouteWithChildren,
-};
+  IndexRoute: IndexRoute,
+  AppRouteRoute: AppRouteRouteWithChildren,
+  AuthRoute: AuthRouteWithChildren,
+}
 export const routeTree = rootRouteImport
-	._addFileChildren(rootRouteChildren)
-	._addFileTypes<FileRouteTypes>();
+  ._addFileChildren(rootRouteChildren)
+  ._addFileTypes<FileRouteTypes>()
 
-import type { getRouter } from "./router.tsx";
-import type { createStart } from "@tanstack/react-start";
-declare module "@tanstack/react-start" {
-	interface Register {
-		ssr: true;
-		router: Awaited<ReturnType<typeof getRouter>>;
-	}
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
 }
