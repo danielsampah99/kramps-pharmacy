@@ -9,11 +9,7 @@ export const customersTable = defineTable({
 	contactName: v.nullable(v.string()),
 	contactPhone: v.nullable(v.string()),
 	contactEmail: v.nullable(v.string()),
-	type: v.union(
-		v.literal("individual"),
-		v.literal("hospital"),
-		v.literal("pharmacy"),
-	),
+	type: v.union(v.literal("individual"), v.literal("hospital"), v.literal("pharmacy")),
 	blacklistedAt: v.nullable(v.string()),
 	blacklistedBy: v.nullable(v.id("users")),
 	blacklistedReason: v.nullable(v.string()),

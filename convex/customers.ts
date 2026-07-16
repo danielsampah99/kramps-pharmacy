@@ -3,11 +3,7 @@ import { mutation, query } from "./_generated/server";
 import { Id } from "./_generated/dataModel";
 import { getUserId, getUserInfo } from "./dosageForms";
 
-const customerType = v.union(
-	v.literal("individual"),
-	v.literal("hospital"),
-	v.literal("pharmacy"),
-);
+const customerType = v.union(v.literal("individual"), v.literal("hospital"), v.literal("pharmacy"));
 
 const mutateCustomerArgs = {
 	name: v.string(),
@@ -20,20 +16,10 @@ const mutateCustomerArgs = {
 	type: customerType,
 };
 
-
 export const addCustomer = mutation({
 	args: mutateCustomerArgs,
 	handler: async (ctx, args) => {
-		const {
-			name,
-			phone,
-			address,
-			email,
-			contactName,
-			contactPhone,
-			contactEmail,
-			type,
-		} = args;
+		const { name, phone, address, email, contactName, contactPhone, contactEmail, type } = args;
 		const userId = await getUserId(ctx);
 
 		return await ctx.db.insert("customers", {
@@ -60,17 +46,7 @@ export const addCustomer = mutation({
 export const updateCustomer = mutation({
 	args: { ...mutateCustomerArgs, customerId: v.id("customers") },
 	handler: async (ctx, args) => {
-		const {
-			customerId,
-			name,
-			phone,
-			address,
-			email,
-			contactName,
-			contactPhone,
-			contactEmail,
-			type,
-		} = args;
+		const { customerId, name, phone, address, email, contactName, contactPhone, contactEmail, type } = args;
 		const userId = await getUserId(ctx);
 
 		return await ctx.db.patch("customers", customerId, {
@@ -106,10 +82,7 @@ export const deleteCustomer = mutation({
 export const listActiveCustomers = query({
 	args: {},
 	handler: async (ctx) => {
-		const customers = await ctx.db
-			.query("customers")
-			.order("desc")
-			.collect();
+		const customers = await ctx.db.query("customers").order("desc").collect();
 
 		const customersWithUsers = await Promise.all(
 			customers.map(async (cu) => {

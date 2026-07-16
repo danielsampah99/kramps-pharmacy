@@ -19,37 +19,21 @@ export const DosageForms = () => {
 	return (
 		<div>
 			<div className="card p-0!">
-				<div className="p-5 flex items-center justify-between border-b border-solid border-gray-200">
-					<h2 className="text-emerald-900 text-[15px] font-btn">
-						Dosage Forms
-					</h2>
+				<div className="flex items-center justify-between border-b border-solid border-gray-200 p-5">
+					<h2 className="text-[15px] font-btn text-emerald-900">Dosage Forms</h2>
 
-					<Button
-						type="button"
-						disabled={showForm}
-						onClick={() => setShowForm(true)}
-						className="cursor-pointer"
-					>
-						<PlusSquareIcon
-							aria-hidden="false"
-							className="size-5 stroke-brand fill-transprent stroke-2"
-						/>
+					<Button type="button" disabled={showForm} onClick={() => setShowForm(true)} className="cursor-pointer">
+						<PlusSquareIcon aria-hidden="false" className="fill-transprent size-5 stroke-brand stroke-2" />
 					</Button>
 				</div>
-				{showForm && (
-					<DosageForm
-						defaultValues={addDosageDefaultValues}
-						dosageFormId={null}
-						onCloseDosageForm={() => setShowForm(false)}
-					/>
-				)}
+				{showForm && <DosageForm defaultValues={addDosageDefaultValues} dosageFormId={null} onCloseDosageForm={() => setShowForm(false)} />}
 				<div className="p-5">
 					{dosageForms === undefined ? (
 						<div>Loading...</div>
 					) : dosageForms.length === 0 ? (
 						<EmtpyDosages />
 					) : (
-						<ul className=" space-y-2.5">
+						<ul className="space-y-2.5">
 							{dosageForms.map((df) => (
 								<DosageFormItem key={df._id} dosageForm={df} />
 							))}
@@ -61,11 +45,7 @@ export const DosageForms = () => {
 	);
 };
 
-const DosageFormItem = ({
-	dosageForm: df,
-}: {
-	dosageForm: FunctionReturnType<typeof api.dosageForms.listDosageForms>[0];
-}) => {
+const DosageFormItem = ({ dosageForm: df }: { dosageForm: FunctionReturnType<typeof api.dosageForms.listDosageForms>[0] }) => {
 	const [editing, setEditing] = useState(false);
 
 	const deleteDosage = useMutation(api.dosageForms.deleteDosageForm);
@@ -93,40 +73,26 @@ const DosageFormItem = ({
 
 	return (
 		<li className="group flex flex-col overflow-hidden">
-			<div className="flex items-center justify-between ">
-				<h5 className="capitalize text-gray-900 font-[325] text-btn cursor-default">
+			<div className="flex items-center justify-between">
+				<h5 className="cursor-default text-btn font-[325] text-gray-900 capitalize">
 					{df.name}&nbsp;{" "}
-					<span
-						title={audit}
-						className="text-xs lowercase font-light text-gray-500"
-					>
+					<span title={audit} className="text-xs font-light text-gray-500 lowercase">
 						{formatDistanceToNow(new Date(df._creationTime), {
 							addSuffix: true,
 							includeSeconds: true,
 						})}
 					</span>
 				</h5>
-				<div className="hidden group-hover:flex items-center gap-x-1.5">
-					<Button
-						type="button"
-						onClick={() => setEditing(true)}
-						className="cursor-pointer"
-					>
-						<EditIcon className="size-4 stroke-brand fill-transparent stroke-2" />
+				<div className="hidden items-center gap-x-1.5 group-hover:flex">
+					<Button type="button" onClick={() => setEditing(true)} className="cursor-pointer">
+						<EditIcon className="size-4 fill-transparent stroke-brand stroke-2" />
 					</Button>
-					<Button
-						type="button"
-						onClick={async () => await deleteDosage({ id: df._id })}
-						className="cursor-pointer"
-					>
-						<TrashIcon className="size-4 stroke-red-500 fill-transparent stroke-2" />
+					<Button type="button" onClick={async () => await deleteDosage({ id: df._id })} className="cursor-pointer">
+						<TrashIcon className="size-4 fill-transparent stroke-red-500 stroke-2" />
 					</Button>
 				</div>
 			</div>
-			<p
-				className="text-sm font-light text-gray-500 truncate max-w-70"
-				title={df.description ?? undefined}
-			>
+			<p className="max-w-70 truncate text-sm font-light text-gray-500" title={df.description ?? undefined}>
 				{df.description ?? null}
 			</p>
 		</li>
@@ -139,9 +105,7 @@ const addDosageDefaultValues: AddDosageFormValues = {
 };
 
 type AddDosageFormValues = FunctionArgs<typeof api.dosageForms.addDosageForm>;
-type UpdateDosageFormValues = FunctionArgs<
-	typeof api.dosageForms.updateDosageForm
->;
+type UpdateDosageFormValues = FunctionArgs<typeof api.dosageForms.updateDosageForm>;
 
 type DosageFormProps = {
 	onCloseDosageForm: VoidFunction;
@@ -175,10 +139,7 @@ const DosageForm = ({ ...props }: DosageFormProps) => {
 
 	return (
 		<form
-			className={cn(
-				"space-y-4 py-4 border-solid border-gray-200 border-y",
-				!props.dosageFormId && "px-2 lg:px-4",
-			)}
+			className={cn("space-y-4 border-y border-solid border-gray-200 py-4", !props.dosageFormId && "px-2 lg:px-4")}
 			onSubmit={(event) => {
 				event.preventDefault();
 				event.stopPropagation();
@@ -211,16 +172,9 @@ const DosageForm = ({ ...props }: DosageFormProps) => {
 							rows={3}
 							name={field.name}
 							value={field.state.value ?? undefined}
-							onChange={(event) =>
-								field.handleChange(event.currentTarget.value)
-							}
+							onChange={(event) => field.handleChange(event.currentTarget.value)}
 							onBlur={field.handleBlur}
-							className={cn(
-								"w-full!",
-								!props.dosageFormId
-									? "field-sizing-fixed"
-									: "field-sizing-content",
-							)}
+							className={cn("w-full!", !props.dosageFormId ? "field-sizing-fixed" : "field-sizing-content")}
 							aria-label="Description"
 						/>
 					</div>
@@ -228,18 +182,12 @@ const DosageForm = ({ ...props }: DosageFormProps) => {
 			</form.Field>
 
 			<div className="flex items-center justify-end gap-2">
-				<Button
-					onClick={() => props.onCloseDosageForm()}
-					type="button"
-					className="btn btn-secondary"
-				>
+				<Button onClick={() => props.onCloseDosageForm()} type="button" className="btn btn-secondary">
 					Cancel
 				</Button>
 
 				<Button type="submit" className="btn btn-primary">
-					{!props.dosageFormId
-						? "Add dosage form"
-						: "Update dosage form"}
+					{!props.dosageFormId ? "Add dosage form" : "Update dosage form"}
 				</Button>
 			</div>
 		</form>
@@ -248,19 +196,13 @@ const DosageForm = ({ ...props }: DosageFormProps) => {
 
 const EmtpyDosages = () => (
 	<div className="flex flex-col items-center justify-center gap-4 pb-6">
-		<div className="min-w-0 w-full">
-			<Image
-				src="/no-dosage-forms.png"
-				alt="Illustration for the empty state"
-				layout="fullWidth"
-			/>
+		<div className="w-full min-w-0">
+			<Image src="/no-dosage-forms.png" alt="Illustration for the empty state" layout="fullWidth" />
 		</div>
 
-		<div className="text-emerald-900 font-normal text-sm text-center ">
+		<div className="text-center text-sm font-normal text-emerald-900">
 			<h4>No Dosage Forms</h4>
-			<p className="font-light text-gray-500 max-w-80 text-xs">
-				No dosage forms added. Add one using the plus button above
-			</p>
+			<p className="max-w-80 text-xs font-light text-gray-500">No dosage forms added. Add one using the plus button above</p>
 		</div>
 	</div>
 );

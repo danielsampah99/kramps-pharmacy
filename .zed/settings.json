@@ -3,15 +3,11 @@
 // For a full list of overridable settings, and general information on folder-specific settings,
 // see the documentation: https://zed.dev/docs/configuring-zed#settings-files
 {
-	"language_servers": ["!eslint", "!vtsls", "!prettier", "..."],
+	"language_servers": ["!eslint", "!typescript-language-server", "!prettier", "..."],
 	"languages": {
 		"CSS": {
-			"language_servers": [
-				"tailwindcss-language-server",
-				"vscode-css-language-server",
-				"...",
-			],
-		},
+			"language_servers": ["tailwindcss-language-server", "vscode-css-language-server", "..."]
+		}
 	},
 	"lsp": {
 		"vscode-css-language-server": {

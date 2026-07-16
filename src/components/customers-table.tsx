@@ -1,23 +1,11 @@
 import { Link, LinkOptions } from "@tanstack/react-router";
-import {
-	ColumnDef,
-	createColumnHelper,
-	tableFeatures,
-	useTable,
-} from "@tanstack/react-table";
+import { ColumnDef, createColumnHelper, tableFeatures, useTable } from "@tanstack/react-table";
 import { Image } from "@unpic/react";
 import { FunctionReturnType } from "convex/server";
 import { api } from "~convex/_generated/api";
 import { DateTooltip } from "./tooltip";
 import { useTanStackTableDevtools } from "@tanstack/react-table-devtools";
-import {
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from "./table";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "./table";
 
 type EmptyCustomersProps = {
 	to: LinkOptions["to"];
@@ -27,21 +15,12 @@ type EmptyCustomersProps = {
 };
 
 export const EmptyCustomers = ({ ...props }: EmptyCustomersProps) => (
-	<div className="w-full text-center py-20 space-y-4 max-w-sm mx-auto">
-		<Image
-			src="/assets/no-active-customers.png"
-			alt=""
-			className="mx-auto h-auto w-full"
-			layout="constrained"
-			width={192}
-			height={192}
-		/>
+	<div className="mx-auto w-full max-w-sm space-y-4 py-20 text-center">
+		<Image src="/assets/no-active-customers.png" alt="" className="mx-auto h-auto w-full" layout="constrained" width={192} height={192} />
 
 		<div className="space-y-1">
-			<h2 className="font-medium text-emerald-900 text-base ">
-				{props.title}
-			</h2>
-			<p className="text-gray-500 text-sm">{props.description}</p>
+			<h2 className="text-base font-medium text-emerald-900">{props.title}</h2>
+			<p className="text-sm text-gray-500">{props.description}</p>
 		</div>
 
 		<Link to={props.to} className="btn btn-primary">
@@ -50,9 +29,7 @@ export const EmptyCustomers = ({ ...props }: EmptyCustomersProps) => (
 	</div>
 );
 
-export type Customer = FunctionReturnType<
-	typeof api.customers.listActiveCustomers
->[0];
+export type Customer = FunctionReturnType<typeof api.customers.listActiveCustomers>[0];
 
 const customersTableFeatures = tableFeatures({
 	// coreRowModel: coreRowModelsFeature,
@@ -64,10 +41,7 @@ const customerColumns = [
 	cth.accessor((row) => row.name, {
 		header: "Full Name",
 		cell: (info) => (
-			<strong
-				title={info.getValue()}
-				className="truncate text-emerald-700 capitalize font-medium text-base"
-			>
+			<strong title={info.getValue()} className="truncate text-base font-medium text-emerald-700 capitalize">
 				{info.getValue()}
 			</strong>
 		),
@@ -75,28 +49,21 @@ const customerColumns = [
 	cth.accessor((row) => row.email, {
 		header: "Email Address",
 		cell: (info) => (
-			<a
-				href={`mailto:${info.getValue()}`}
-				className="underline lowercase"
-			>
+			<a href={`mailto:${info.getValue()}`} className="lowercase underline">
 				{info.getValue()}
 			</a>
 		),
 	}),
 	cth.accessor((row) => row.phone, {
 		header: "Phone Number",
-		cell: (info) => (
-			<a href={`tel:${info.getValue()}`}>{info.getValue()}</a>
-		),
+		cell: (info) => <a href={`tel:${info.getValue()}`}>{info.getValue()}</a>,
 	}),
 
 	cth.accessor((row) => row.phone, {
 		header: "Contact Person",
 		cell: (info) => (
-			<div className="inline-flex items-center justifystart">
-				<span className="text-sm font-btn text-btn">
-					{info.row.original.contactName?.toLocaleLowerCase("en-GB")}
-				</span>
+			<div className="justifystart inline-flex items-center">
+				<span className="text-sm text-btn font-btn">{info.row.original.contactName?.toLocaleLowerCase("en-GB")}</span>
 			</div>
 		),
 	}),
@@ -112,9 +79,7 @@ export const CustomersTable = ({ customers }: { customers: Customer[] }) => {
 		key: "active-customers-table",
 		features: customersTableFeatures,
 		data: customers,
-		columns: customerColumns as Array<
-			ColumnDef<typeof customersTableFeatures, Customer>
-		>,
+		columns: customerColumns as Array<ColumnDef<typeof customersTableFeatures, Customer>>,
 		getRowId: (row) => row._id,
 	});
 
@@ -126,11 +91,7 @@ export const CustomersTable = ({ customers }: { customers: Customer[] }) => {
 				{table.getHeaderGroups().map((hg) => (
 					<TableRow key={hg.id}>
 						{hg.headers.map((header) => (
-							<TableHead key={header.id}>
-								{header.isPlaceholder ? null : (
-									<table.FlexRender header={header} />
-								)}
-							</TableHead>
+							<TableHead key={header.id}>{header.isPlaceholder ? null : <table.FlexRender header={header} />}</TableHead>
 						))}
 					</TableRow>
 				))}

@@ -32,11 +32,7 @@ export function getRouter() {
 			defaultPreloadStaleTime: 0, // Let React Query handle all caching
 			defaultErrorComponent: (err) => <p>{err.error.stack}</p>,
 			defaultNotFoundComponent: () => <p>not found</p>,
-			Wrap: ({ children }) => (
-				<ConvexProvider client={convexQueryClient.convexClient}>
-					{children}
-				</ConvexProvider>
-			),
+			Wrap: ({ children }) => <ConvexProvider client={convexQueryClient.convexClient}>{children}</ConvexProvider>,
 		}),
 		queryClient,
 	);

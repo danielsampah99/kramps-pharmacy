@@ -67,10 +67,7 @@
 				"require-yield": "error",
 				"use-isnan": "error",
 				"valid-typeof": "error",
-				"import/consistent-type-specifier-style": [
-					"error",
-					"prefer-top-level"
-				],
+				"import/consistent-type-specifier-style": ["error", "prefer-top-level"],
 				"import/first": "error",
 				"import/newline-after-import": "error",
 				"import/no-commonjs": "error",
@@ -171,10 +168,7 @@
 				"require-yield": "error",
 				"use-isnan": "error",
 				"valid-typeof": "error",
-				"import/consistent-type-specifier-style": [
-					"error",
-					"prefer-top-level"
-				],
+				"import/consistent-type-specifier-style": ["error", "prefer-top-level"],
 				"import/first": "error",
 				"import/newline-after-import": "error",
 				"import/no-commonjs": "error",

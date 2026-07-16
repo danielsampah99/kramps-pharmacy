@@ -24,20 +24,17 @@ export const Navbar = () => {
 	};
 
 	return (
-		<nav className="bg-white flex justify-between text-gray-800 w-full h-16 px-4 shadow-sm drop-shadow-logo md:px-6 lg:px-8 border-b border-solid border-gray-200">
+		<nav className="flex h-16 w-full justify-between border-b border-solid border-gray-200 bg-white px-4 text-gray-800 shadow-sm drop-shadow-logo md:px-6 lg:px-8">
 			<div className="flex items-center">
-				<Link
-					to="/"
-					className="bg-transparent h-9 py-1 rounded-xl px-3 w-fit"
-				>
+				<Link to="/" className="h-9 w-fit rounded-xl bg-transparent px-3 py-1">
 					<Logo className="h-full stroke-brand text-brand" />
 				</Link>
 			</div>
 
-			<div className="flex items-center text-base font-medium font-sans">
+			<div className="flex items-center font-sans text-base font-medium">
 				<Link
 					to="/dashboard"
-					className="group inline-flex mx-1 items-center gap-x-2.5 hover:bg-kumo-brand/20 rounded-xl px-3 py-2 bg-transparent transition-colors"
+					className="group mx-1 inline-flex items-center gap-x-2.5 rounded-xl bg-transparent px-3 py-2 transition-colors hover:bg-kumo-brand/20"
 				>
 					<DashboardIcon className="size-4 text-brand group-hover:text-kumo-brand-hover" />
 					Dashboard
@@ -48,30 +45,28 @@ export const Navbar = () => {
 						openOnHover={true}
 						delay={0}
 						className={cn(
-							"group inline-flex mx-1 cursor-pointer items-center gap-x-2.5 hover:bg-kumo-brand/20 rounded-xl px-3 py-2 bg-transparent transition-colors",
+							"group mx-1 inline-flex cursor-pointer items-center gap-x-2.5 rounded-xl bg-transparent px-3 py-2 transition-colors hover:bg-kumo-brand/20",
 						)}
 					>
-						<UserIcon className="size-4 text-brand group-hover:text-kumo-brand-hover group-focus-within:text-kumo-brand-hover transition-colors" />
+						<UserIcon className="size-4 text-brand transition-colors group-focus-within:text-kumo-brand-hover group-hover:text-kumo-brand-hover" />
 						Account
 					</Popover.Trigger>
 					<Popover.Content
 						align="end"
-						className="shadow-md p-2 bg-white text-sm flex flex-col border border-gray-500/10 border-solid bg-clip-padding shadow-brand/50"
+						className="flex flex-col border border-solid border-gray-500/10 bg-white bg-clip-padding p-2 text-sm shadow-md shadow-brand/50"
 					>
-						<div className="px-3 max-w-44 mb-2">
-							<Popover.Title className="font-normal">
-								Signed in as
-							</Popover.Title>
-							<Popover.Description className="truncate text-emerald-900 lg:text-sm font-[575] text-[0.8rem]">
+						<div className="mb-2 max-w-44 px-3">
+							<Popover.Title className="font-normal">Signed in as</Popover.Title>
+							<Popover.Description className="truncate text-[0.8rem] font-[575] text-emerald-900 lg:text-sm">
 								{user.email}
 							</Popover.Description>
 						</div>
 
-						<hr className="h-px mb-1 bg-gray-200 border-0" />
+						<hr className="mb-1 h-px border-0 bg-gray-200" />
 
 						<Link
 							to=".."
-							className="flex items-center gap-x-2.5 whitespace-nowrap rounded-md min-w-44 px-3 py-2 hover:bg-kumo-brand-hover/30 transition-colors"
+							className="flex min-w-44 items-center gap-x-2.5 rounded-md px-3 py-2 whitespace-nowrap transition-colors hover:bg-kumo-brand-hover/30"
 						>
 							<SettingsIcon className="size-4 fill-brand stroke-logo" />
 							Settings
@@ -80,7 +75,7 @@ export const Navbar = () => {
 						<Button
 							type="button"
 							onClick={handleSignOut}
-							className="flex items-center cursor-pointer gap-x-2.5 whitespace-nowrap rounded-md min-w-44 px-3 py-2 hover:bg-kumo-brand-hover/30 transition-colors"
+							className="flex min-w-44 cursor-pointer items-center gap-x-2.5 rounded-md px-3 py-2 whitespace-nowrap transition-colors hover:bg-kumo-brand-hover/30"
 						>
 							<SignOutIcon className="size-4 text-brand" />
 							Sign out

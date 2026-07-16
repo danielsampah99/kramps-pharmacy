@@ -11,10 +11,10 @@ function RouteComponent() {
 	return (
 		<>
 			{/*<Authenticated>*/}
-				<Navbar />
-				<section className="w-full flex min-h-[calc(100lvh-64px)] bg-linear-to-r/oklch from-logo/70 via-white to-brand/30 flex-col lg:flex-row gap-4 lg:gap-6 py-4 lg:py-6 px-4 sm:px-8 lg:pb-8 lg:overflow-visible">
-					<Sidebar />
-				</section>
+			<Navbar />
+			<section className="flex min-h-[calc(100lvh-64px)] w-full flex-col gap-4 bg-linear-to-r/oklch from-logo/70 via-white to-brand/30 px-4 py-4 sm:px-8 lg:flex-row lg:gap-6 lg:overflow-visible lg:py-6 lg:pb-8">
+				<Sidebar />
+			</section>
 			{/*</Authenticated>*/}
 		</>
 	);

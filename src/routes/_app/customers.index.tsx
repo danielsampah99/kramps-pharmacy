@@ -15,7 +15,7 @@ function RouteComponent() {
 	}
 
 	return (
-		<div className="card p-0! overflow-x-scroll">
+		<div className="card overflow-x-scroll p-0!">
 			{customers.length === 0 ? (
 				<EmptyCustomers
 					description="Create a new customer to get started"
@@ -25,10 +25,8 @@ function RouteComponent() {
 				/>
 			) : (
 				<>
-					<div className="flex items-center justify-between px-5 py-4 border-b border-solid border-gray-200">
-						<h2 className="font-btn text-emerald-900 text-base ">
-							Members
-						</h2>
+					<div className="flex items-center justify-between border-b border-solid border-gray-200 px-5 py-4">
+						<h2 className="text-base font-btn text-emerald-900">Members</h2>
 						<Link to="/customers/new" className="btn btn-secondary">
 							New Customer
 						</Link>

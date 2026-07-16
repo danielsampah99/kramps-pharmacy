@@ -12,7 +12,7 @@ export const currentUser = query({
 		const userId = await getAuthUserId(ctx);
 
 		if (userId === null) {
-			return null
+			return null;
 		}
 
 		return await ctx.db.get("users", userId);

@@ -28,15 +28,13 @@ export const addStaff = action({
 export const listStaff = query({
 	args: {},
 	handler: async (ctx) => {
-		const users = (await ctx.db.query("users").order("desc").collect()).map(
-			(user) => ({
-				id: user._id,
-				createdAt: user._creationTime,
-				fullName: user.name,
-				email: user.email,
-				phone: user.phone,
-			}),
-		);
+		const users = (await ctx.db.query("users").order("desc").collect()).map((user) => ({
+			id: user._id,
+			createdAt: user._creationTime,
+			fullName: user.name,
+			email: user.email,
+			phone: user.phone,
+		}));
 
 		return users;
 	},

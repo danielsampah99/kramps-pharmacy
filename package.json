@@ -1,8 +1,8 @@
 {
 	"name": "kramps-pharmacy",
 	"private": true,
-	"sideEffects": false,
 	"type": "module",
+	"sideEffects": false,
 	"scripts": {
 		"dev": "convex dev --start 'vite dev --port 4000 --host pharmacy.localhost'",
 		"build": "vite build && tsc --noEmit",
@@ -56,6 +56,10 @@
 		"typescript": "^6.0.3",
 		"vite": "^8.1.0"
 	},
+	"engines": {
+		"packageManager": "pnpm@10"
+	},
+	"packageManager": "pnpm@10.27.0",
 	"pnpm": {
 		"onlyBuiltDependencies": [
 			"esbuild",
@@ -69,9 +73,5 @@
 		"overrides": {
 			"vite": "^8"
 		}
-	},
-	"engines": {
-		"packageManager": "pnpm@10"
-	},
-	"packageManager": "pnpm@10.27.0"
+	}
 }

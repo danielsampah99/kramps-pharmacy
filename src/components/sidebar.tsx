@@ -29,30 +29,22 @@ type SidebarRouteProps = {
 	href: LinkProps["to"];
 };
 
-const SidebarRouteItem = ({
-	href: to,
-	icon: Icon,
-	name,
-}: SidebarRouteProps) => (
+const SidebarRouteItem = ({ href: to, icon: Icon, name }: SidebarRouteProps) => (
 	<Link
 		to={to}
-		className="mt-0.5 group w-14 lg:w-auto shrink-0 lg:shrink flex flex-col lg:flex-row gap-0.5 lg:gap-2.5 items-center
-		justify-items-center lg:justify-items-start px-1 py-1 lg:px-2.5 lg:py-2 rounded-lg transition-colors text-white/60
-		hover:text-white lg:hover:bg-transparent lg:hover:text-emerald-600 lg:text-emerald-900"
+		className="group mt-0.5 flex w-14 shrink-0 flex-col items-center justify-items-center gap-0.5 rounded-lg px-1 py-1 text-white/60 transition-colors hover:text-white lg:w-auto lg:shrink lg:flex-row lg:justify-items-start lg:gap-2.5 lg:px-2.5 lg:py-2 lg:text-emerald-900 lg:hover:bg-transparent lg:hover:text-emerald-600"
 		activeOptions={{
-			exact: true
+			exact: true,
 		}}
 		activeProps={{
 			className:
 				"transition-colors text-white bg-emerald-600/90 lg:hover:bg-emerald-500/20 lg:hover:text-emerald-700 lg:bg-emerald-500/20 lg:text-emerald-700 hover:bg-emerald-600/90 hover:text-emerald-700",
 		}}
 	>
-		<span className="size-5 lg:size-6 flex items-center justify-center shrink-0 lg:bg-linear-to-b lg:from-white/75 lg:to-emerald-100/75 lg:rounded-md lg:shadow-sm lg:shadow-emerald-800/10 lg:ring-1 lg:ring-emerald-800/10">
-			<Icon className="size-3.5 stroke-brand fill-transparent stroke-2" />
+		<span className="flex size-5 shrink-0 items-center justify-center lg:size-6 lg:rounded-md lg:bg-linear-to-b lg:from-white/75 lg:to-emerald-100/75 lg:shadow-sm lg:ring-1 lg:shadow-emerald-800/10 lg:ring-emerald-800/10">
+			<Icon className="size-3.5 fill-transparent stroke-brand stroke-2" />
 		</span>
-		<span className="capitalize text-center font-btn text-btn lg:text-left truncate w-full lg:w-auto">
-			{name}
-		</span>
+		<span className="w-full truncate text-center text-btn font-btn capitalize lg:w-auto lg:text-left">{name}</span>
 	</Link>
 );
 
@@ -87,30 +79,24 @@ export const Sidebar = () => (
 		<KSidebar className="lg:w-72! lg:max-w-72!">
 			<KSidebar.Content className="py-0!">
 				<KSidebar.Group className="px-0 py-0!">
-					<label className="border-none m-0! [&_div]:pl-0! text-btn font-btn text-gray-700 mb-1!">
-						Branch
-					</label>
-					<div
-						className="inline-flex items-center w-full justify-between px-3 bg-white rounded-btn py-2 font-btn bg-clip-padding
-						whitespace-nowrap transition-all duration-200 border-btn-border cursor-pointer  border border-solid
-						hover:text-btn-text hover:border-btn-active hover:bg-emerald-50 inset-shadow-btn-border hover:inset-shadow-btn-active"
-					>
-						<div className="inline-flex gap-2 font-medium items-center justify-normal flex-1">
-							<StoreIcon className="size-4.5 stroke-brand fill-logo stroke-[1.5]" />
+					<label className="m-0! mb-1! border-none text-btn font-btn text-gray-700 [&_div]:pl-0!">Branch</label>
+					<div className="inline-flex w-full cursor-pointer items-center justify-between rounded-btn border border-solid border-btn-border bg-white bg-clip-padding px-3 py-2 font-btn whitespace-nowrap inset-shadow-btn-border transition-all duration-200 hover:border-btn-active hover:bg-emerald-50 hover:text-btn-text hover:inset-shadow-btn-active">
+						<div className="inline-flex flex-1 items-center justify-normal gap-2 font-medium">
+							<StoreIcon className="size-4.5 fill-logo stroke-brand stroke-[1.5]" />
 							<span>Head Office</span>
 						</div>
-						<kbd className="px-1.5 py-0.5 bg-emerald-100 w-fit text-sm inline-flex items-center font-mono rounded-sm  text-emerald-400 font-semibold">
+						<kbd className="inline-flex w-fit items-center rounded-sm bg-emerald-100 px-1.5 py-0.5 font-mono text-sm font-semibold text-emerald-400">
 							⌘K
 						</kbd>
 					</div>
 				</KSidebar.Group>
 
-				<Button className="btn btn-brand mt-4 w-full inline-flex gap-2 font-medium hover:text-white! focus:text-white">
-					<CartIcon className="size-4.5 stroke-logo fill-brand/10" />
+				<Button className="btn btn-brand mt-4 inline-flex w-full gap-2 font-medium hover:text-white! focus:text-white">
+					<CartIcon className="size-4.5 fill-brand/10 stroke-logo" />
 					Point of Sale
 				</Button>
 
-				<KSidebar.Group className="backdrop-blur-md mt-4 lg:bg-transparent font-medium lg:text-emerald-900 lg:px-0">
+				<KSidebar.Group className="mt-4 font-medium backdrop-blur-md lg:bg-transparent lg:px-0 lg:text-emerald-900">
 					{dailyOperationsRoutes.map((route) => (
 						<SidebarRouteItem key={route.id} {...route} />
 					))}
@@ -135,12 +121,12 @@ export const Sidebar = () => (
 				</KSidebar.Group>
 			</KSidebar.Content>
 		</KSidebar>
-		<main className="flex-1 w-full grow p-0 min-w-0">
+		<main className="w-full min-w-0 flex-1 grow p-0">
 			<Outlet />
 		</main>
 	</KSidebar.Provider>
 );
 
 export const Separator = () => (
-	<hr className="hidden lg:block my-3 w-full h-px border-0 bg-linear-to-r from-emerald-800/5 via-emerald-800/20 to-emerald-800/5" />
+	<hr className="my-3 hidden h-px w-full border-0 bg-linear-to-r from-emerald-800/5 via-emerald-800/20 to-emerald-800/5 lg:block" />
 );

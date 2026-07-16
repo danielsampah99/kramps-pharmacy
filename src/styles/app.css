@@ -24,11 +24,8 @@ html {
 @utility bubble {
 	font-family: "Fricolage Grotesque", sans-serif;
 	transform-origin: var(--transform-origin);
-	filter: drop-shadow(0 2px 2px oklch(0.65 0.15 150 / 0.1))
-		drop-shadow(0 1px oklch(0.65 0.15 150 / 0.1))
-		drop-shadow(0 -1px oklch(0.65 0.15 150 / 0.1))
-		drop-shadow(-1px 0 oklch(0.65 0.15 150 / 0.1))
-		drop-shadow(1px 0 oklch(0.65 0.15 150 / 0.1));
+	filter: drop-shadow(0 2px 2px oklch(0.65 0.15 150 / 0.1)) drop-shadow(0 1px oklch(0.65 0.15 150 / 0.1))
+		drop-shadow(0 -1px oklch(0.65 0.15 150 / 0.1)) drop-shadow(-1px 0 oklch(0.65 0.15 150 / 0.1)) drop-shadow(1px 0 oklch(0.65 0.15 150 / 0.1));
 }
 
 @layer base {
@@ -121,8 +118,7 @@ html {
 	.btn-xl,
 	.btn-2xl {
 		box-shadow: var(--inset-shadow-btn), var(--shadow-btn-transparent);
-		@apply inline-flex items-center tracking-normal text-btn-text bg-white font-btn bg-clip-padding
-		whitespace-nowrap transition-all duration-200 justify-center rounded-full border-btn-border border;
+		@apply inline-flex items-center justify-center rounded-full border border-btn-border bg-white bg-clip-padding font-btn tracking-normal whitespace-nowrap text-btn-text transition-all duration-200;
 	}
 	.btn-xs:not(:disabled):hover,
 	.btn-sm:not(:disabled):hover,
@@ -131,7 +127,7 @@ html {
 	.btn-xl:not(:disabled):hover,
 	.btn-2xl:not(:disabled):hover {
 		box-shadow: var(--inset-shadow-btn-active), var(--shadow-btn-active);
-		@apply text-btn-text border-btn-active bg-emerald-50;
+		@apply border-btn-active bg-emerald-50 text-btn-text;
 	}
 	.btn-xs:focus,
 	.btn-sm:focus,
@@ -142,7 +138,7 @@ html {
 		box-shadow:
 			0 0 0 3px var(--color-btn-ring),
 			var(--btn-inner-shadow-active);
-		@apply text-btn-active bg-btn-active border-btn-border transition-none;
+		@apply border-btn-border bg-btn-active text-btn-active transition-none;
 	}
 	.btn-xs:disabled,
 	.btn-sm:disabled,
@@ -196,12 +192,8 @@ html {
 		padding-right: 20px;
 	}
 	.btn-shadow {
-		--btn-shadow:
-			0 5px 5px -2px rgb(91 33 182 / 0.1),
-			0 2px 4px -2px rgb(91 33 182 / 0.1);
-		--btn-shadow-active:
-			0 7px 7px -4px rgb(91 33 182 / 0.15),
-			0 2px 4px -2px rgb(91 33 182 / 0.15);
+		--btn-shadow: 0 5px 5px -2px rgb(91 33 182 / 0.1), 0 2px 4px -2px rgb(91 33 182 / 0.1);
+		--btn-shadow-active: 0 7px 7px -4px rgb(91 33 182 / 0.15), 0 2px 4px -2px rgb(91 33 182 / 0.15);
 		background-clip: padding-box;
 		outline: none !important;
 	}
@@ -238,26 +230,20 @@ html {
 		--btn-inner-shadow-active: inset 0 0 6px 3px #064e3b;
 
 		box-shadow: var(--btn-inner-shadow), var(--btn-shadow);
-		@apply inline-flex bg-(--btn-bg-color) tracking-normal cursor-pointer hover:bg-(--btn-bg-color-active)! outline-none! transition-all duration-200 bg-clip-padding items-center justify-center whitespace-nowrap border border-solid border-(--btn-border-color) text-white! font-btn;
+		@apply inline-flex cursor-pointer items-center justify-center border border-solid border-(--btn-border-color) bg-(--btn-bg-color) bg-clip-padding font-btn tracking-normal whitespace-nowrap text-white! transition-all duration-200 outline-none! hover:bg-(--btn-bg-color-active)!;
 	}
 	.btn-secondary {
 		--btn-bg-color: oklch(0.9793 0.0207 166.11); /* emerald-50 */
 		--btn-bg-color-active: oklch(0.9505 0.0507 163.05); /* emerald-100 */
-		--btn-border-color: oklch(
-			0.7729 0.1535 163.22 / 50%
-		); /* emerald-400 with opacity */
+		--btn-border-color: oklch(0.7729 0.1535 163.22 / 50%); /* emerald-400 with opacity */
 		--btn-border-color-active: oklch(0.7729 0.1535 163.22 / 75%);
 		--btn-inner-shadow: inset 0 -2px 6px oklch(0.9049 0.0895 164.15 / 50%); /* emerald-200 with opacity */
-		--btn-inner-shadow-active: inset 0 0 6px 3px
-			oklch(0.9049 0.0895 164.15 / 50%);
-		--btn-ring-color: oklch(
-			0.9505 0.0507 163.05 / 75%
-		); /* emerald-100 with opacity */
+		--btn-inner-shadow-active: inset 0 0 6px 3px oklch(0.9049 0.0895 164.15 / 50%);
+		--btn-ring-color: oklch(0.9505 0.0507 163.05 / 75%); /* emerald-100 with opacity */
 		--btn-text-color: oklch(0.596 0.1274 163.23); /* emerald-600 */
 		--btn-text-color-active: oklch(0.5081 0.1049 165.61); /* emerald-700 */
-		box-shadow:
-			var(--inset-shadow-btn-secondary), var(--shadow-btn-transparent);
-		@apply inline-flex bg-(--btn-bg-color) outline-none! text-btn-text-secondary hover:text-btn-text-secondary tracking-normal cursor-pointer hover:bg-(--btn-bg-color-active)! transition-all duration-200 bg-clip-padding items-center justify-center whitespace-nowrap border border-solid border-(--btn-border-color) font-btn;
+		box-shadow: var(--inset-shadow-btn-secondary), var(--shadow-btn-transparent);
+		@apply inline-flex cursor-pointer items-center justify-center border border-solid border-(--btn-border-color) bg-(--btn-bg-color) bg-clip-padding font-btn tracking-normal whitespace-nowrap text-btn-text-secondary transition-all duration-200 outline-none! hover:bg-(--btn-bg-color-active)! hover:text-btn-text-secondary;
 	}
 	.btn-translucent {
 		--btn-bg-color: rgb(255 255 255 / 0);
@@ -269,19 +255,12 @@ html {
 		--btn-ring-color: rgb(255 255 255 / 0.1);
 		--btn-text-color: white;
 		--btn-text-color-active: white;
-		background-image: linear-gradient(
-			to bottom right,
-			rgb(255 255 255 / 0.075),
-			rgb(255 255 255 / 0.075),
-			rgb(255 255 255 / 0.2)
-		);
+		background-image: linear-gradient(to bottom right, rgb(255 255 255 / 0.075), rgb(255 255 255 / 0.075), rgb(255 255 255 / 0.2));
 		outline: none !important;
 	}
 	.btn-brand {
 		text-shadow: 0px 1px 3px var(--tw-text-shadow-color);
-		@apply outline-none cursor-pointer bg-clip-padding bg-brand bg-linear-to-br
-			from-brand/60 via-transparent to-brand/90 text-white shadow-btn border-white
-			active:text-white ring-white/10 active:inset-shadow-btn-active active:border-white;
+		@apply cursor-pointer border-white bg-brand bg-linear-to-br from-brand/60 via-transparent to-brand/90 bg-clip-padding text-white shadow-btn ring-white/10 outline-none active:border-white active:text-white active:inset-shadow-btn-active;
 	}
 	.btn-border-light {
 		--btn-inner-shadow: inset 0 0 0 1px rgb(221 214 254 / 0.25);
@@ -381,20 +360,12 @@ html {
 	}
 	.card-info {
 		--card-border-color: rgb(59 130 246 / 0.25);
-		background-image: linear-gradient(
-			to bottom right,
-			rgb(186 230 253 / 0.75),
-			rgb(199 210 254 / 0.75)
-		);
+		background-image: linear-gradient(to bottom right, rgb(186 230 253 / 0.75), rgb(199 210 254 / 0.75));
 		color: rgb(30 58 138 / 0.7);
 	}
 	.card-note {
 		--card-border-color: oklch(0.85 0.08 145 / 30%);
-		background-image: linear-gradient(
-			to bottom right,
-			oklch(0.92 0.08 145 / 75%),
-			oklch(0.94 0.06 150 / 75%)
-		);
+		background-image: linear-gradient(to bottom right, oklch(0.92 0.08 145 / 75%), oklch(0.94 0.06 150 / 75%));
 		color: oklch(0.25 0.06 145 / 70%);
 	}
 	.card-info .card-title,
@@ -419,11 +390,7 @@ html {
 	}
 	.card-error {
 		--card-border-color: rgb(225 29 72 / 0.25);
-		background-image: linear-gradient(
-			to bottom right,
-			rgb(254 202 202 / 0.75),
-			rgb(253 164 175 / 0.75)
-		);
+		background-image: linear-gradient(to bottom right, rgb(254 202 202 / 0.75), rgb(253 164 175 / 0.75));
 		color: rgb(190 18 60 / 0.75);
 	}
 	.card-error .card-title,
@@ -448,11 +415,7 @@ html {
 	}
 	.card-warning {
 		--card-border-color: rgb(245 158 11 / 0.35);
-		background-image: linear-gradient(
-			to bottom right,
-			rgb(253 230 138 / 0.75),
-			rgb(254 215 170 / 0.75)
-		);
+		background-image: linear-gradient(to bottom right, rgb(253 230 138 / 0.75), rgb(254 215 170 / 0.75));
 		color: rgb(180 83 9 / 0.75);
 	}
 	.card-warning .card-title,
@@ -477,11 +440,7 @@ html {
 	}
 	.card-success {
 		--card-border-color: rgb(16 185 129 / 0.3);
-		background-image: linear-gradient(
-			to bottom right,
-			rgb(134 239 172 / 0.5),
-			rgb(110 231 183 / 0.5)
-		);
+		background-image: linear-gradient(to bottom right, rgb(134 239 172 / 0.5), rgb(110 231 183 / 0.5));
 		color: rgb(4 120 87 / 0.75);
 	}
 	.card-success .card-title,
@@ -505,9 +464,7 @@ html {
 		background-color: rgb(4 120 87 / 0.1);
 	}
 	.font-heading {
-		font-family:
-			Mackinac, ui-serif, Georgia, Cambria, "Times New Roman", Times,
-			serif;
+		font-family: Mackinac, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 		font-weight: 500;
 		line-height: 1.375;
 		letter-spacing: -0.025em;
@@ -538,9 +495,7 @@ html {
 
 		--tw-shadow: 0 1px 2px 0 oklch(0 0 0 / 5%);
 		--tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
-		box-shadow:
-			var(--tw-ring-offset-shadow, 0 0 #0000),
-			var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+		box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 		--tw-shadow-color: oklch(0.596 0.1274 163.23 / 10%);
 		--tw-shadow: var(--tw-shadow-colored);
 		transition-property:
@@ -556,12 +511,11 @@ html {
 			filter,
 			-webkit-backdrop-filter;
 		transition-property:
-			color, background-color, border-color, text-decoration-color, fill,
-			stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+			color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
 
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		transition-duration: 150ms;
-		@apply border-gray-300 shadow-xs border border-solid p-2.5 text-base h-[43.75px];
+		@apply h-[43.75px] border border-solid border-gray-300 p-2.5 text-base shadow-xs;
 	}
 
 	.input-text-area {
@@ -574,26 +528,20 @@ html {
 	.input-checkbox:focus,
 	.input-radio:focus {
 		--tw-border-opacity: 1;
-		border-color: oklch(
-			0.8452 0.1299 164.98 / var(--tw-border-opacity)
-		); /** rgb(110 231 183 / oklch(0.8452 0.1299 164.98) */
-		--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0
-			var(--tw-ring-offset-width) var(--tw-ring-offset-color);
-		--tw-ring-shadow: var(--tw-ring-inset) 0 0 0
-			calc(20px + var(--tw-ring-offset-width)) var(--tw-ring-color);
+		border-color: oklch(0.8452 0.1299 164.98 / var(--tw-border-opacity)); /** rgb(110 231 183 / oklch(0.8452 0.1299 164.98) */
+		--tw-ring-offset-shadow: var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);
+		--tw-ring-shadow: var(--tw-ring-inset) 0 0 0 calc(20px + var(--tw-ring-offset-width)) var(--tw-ring-color);
 		/*box-shadow:
 			var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
 			var(--tw-shadow, 0 0 #0000);
 		--tw-ring-color: oklch(0.596 0.1274 163.23 / 20%);*/
-		@apply ring-inset ring-brand ring-[1.25px] transition-colors duration-75 ease-in-out;
+		@apply ring-[1.25px] ring-brand transition-colors duration-75 ease-in-out ring-inset;
 	}
 	.input-checkbox,
 	.input-radio {
 		cursor: pointer;
 		--tw-text-opacity: 1;
-		color: oklch(
-			0.596 0.1274 163.23 / var(--tw-text-opacity)
-		); /** rgb(5 150 105) / var(--tw-text-opacity)) */
+		color: oklch(0.596 0.1274 163.23 / var(--tw-text-opacity)); /** rgb(5 150 105) / var(--tw-text-opacity)) */
 	}
 	.input-checkbox:focus,
 	.input-radio:focus {
@@ -602,21 +550,15 @@ html {
 	.input-text::-moz-placeholder,
 	.input-text-area::-moz-placeholder {
 		color: rgb(34 24 60 / 0.5);
-		-moz-transition-property:
-			color, background-color, border-color, text-decoration-color, fill,
-			stroke;
-		transition-property:
-			color, background-color, border-color, text-decoration-color, fill,
-			stroke;
+		-moz-transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+		transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		transition-duration: 150ms;
 	}
 	.input-text::placeholder,
 	.input-text-area::placeholder {
 		color: rgb(34 24 60 / 0.5);
-		transition-property:
-			color, background-color, border-color, text-decoration-color, fill,
-			stroke;
+		transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
 		transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		transition-duration: 150ms;
 	}
@@ -636,38 +578,17 @@ html {
 }
 
 @theme {
-	--color-canvas: light-dark(
-		oklch(0.8279 0.1517 175),
-		oklch(0.8279 0.1517 175)
-	); /** #21e6c1 */
+	--color-canvas: light-dark(oklch(0.8279 0.1517 175), oklch(0.8279 0.1517 175)); /** #21e6c1 */
 
-	--color-logo: light-dark(
-		oklch(0.8279 0.1517 175),
-		oklch(0.8279 0.1517 175)
-	);
+	--color-logo: light-dark(oklch(0.8279 0.1517 175), oklch(0.8279 0.1517 175));
 
-	--color-kumo-canvas: light-dark(
-		oklch(0.982 0.018 155.826),
-		oklch(0.905 0.093 164.15)
-	);
+	--color-kumo-canvas: light-dark(oklch(0.982 0.018 155.826), oklch(0.905 0.093 164.15));
 
-	--color-brand: light-dark(
-		oklch(0.696 0.17 162.48),
-		oklch(0.8156 0.1517 175)
-	);
+	--color-brand: light-dark(oklch(0.696 0.17 162.48), oklch(0.8156 0.1517 175));
 
-	--color-kumo-brand: light-dark(
-		oklch(0.696 0.17 162.48),
-		oklch(0.8156 0.1517 175)
-	);
-	--color-kumo-brand-hover: light-dark(
-		oklch(0.6744 0.1018 175),
-		oklch(0.8696 0.1517 175)
-	);
-	--color-label: light-dark(
-		oklch(0.8067 0.0959 151.41 / 75%),
-		oklch(0.6667 0.0959 145.06 / 75%)
-	);
+	--color-kumo-brand: light-dark(oklch(0.696 0.17 162.48), oklch(0.8156 0.1517 175));
+	--color-kumo-brand-hover: light-dark(oklch(0.6744 0.1018 175), oklch(0.8696 0.1517 175));
+	--color-label: light-dark(oklch(0.8067 0.0959 151.41 / 75%), oklch(0.6667 0.0959 145.06 / 75%));
 
 	--color-btn-active: oklch(0.919 0.0072 132.91 / 94.18%);
 
@@ -690,21 +611,14 @@ html {
 
 	--inset-shadow-btn: inset 0 -3px 6px -2px var(--color-brand);
 	--inset-shadow-btn-active: inset 0 0 6px oklch(0.8026 0.1517 162.51);
-	--inset-shadow-btn-secondary: inset 0 -2px 6px
-		oklch(0.8112 0.1013 157.73 / 50%);
-	--inset-shadow-btn-secondary-active: inset 0 -2px 6px
-		oklch(0.8112 0.1013 157.73 / 50%);
+	--inset-shadow-btn-secondary: inset 0 -2px 6px oklch(0.8112 0.1013 157.73 / 50%);
+	--inset-shadow-btn-secondary-active: inset 0 -2px 6px oklch(0.8112 0.1013 157.73 / 50%);
 
 	--shadow-btn-active: 0 0 transparent;
-	--shadow-btn:
-		0 5px 5px -2px rgb(91 33 182 / 0.1), 0 2px 4px -2px rgb(91 33 182 / 0.1);
+	--shadow-btn: 0 5px 5px -2px rgb(91 33 182 / 0.1), 0 2px 4px -2px rgb(91 33 182 / 0.1);
 	--shadow-btn-transparent: 0px 0px transparent;
 
-	--drop-shadow-tooltip: drop-shadow(
-			0 2px 2px oklch(0.7427 0.082 168.78 / 10%)
-		)
-		drop-shadow(0 1px oklch(0.7427 0.082 168.78 / 10%))
-		drop-shadow(0 -1px oklch(0.7427 0.082 168.78 / 10%))
-		drop-shadow(-1px 0 oklch(0.7427 0.082 168.78 / 10%))
+	--drop-shadow-tooltip: drop-shadow(0 2px 2px oklch(0.7427 0.082 168.78 / 10%)) drop-shadow(0 1px oklch(0.7427 0.082 168.78 / 10%))
+		drop-shadow(0 -1px oklch(0.7427 0.082 168.78 / 10%)) drop-shadow(-1px 0 oklch(0.7427 0.082 168.78 / 10%))
 		drop-shadow(1px 0 oklch(0.7427 0.082 168.78 / 10%));
 }

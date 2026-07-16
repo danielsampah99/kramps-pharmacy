@@ -3,17 +3,8 @@ import { Tooltip as KTooltip } from "@cloudflare/kumo/primitives/tooltip";
 import { cn } from "@cloudflare/kumo/utils";
 import { format, formatDistanceToNow } from "date-fns";
 
-export function TooltipProvider({
-	delay = 0,
-	...props
-}: KTooltip.Provider.Props) {
-	return (
-		<KTooltip.Provider
-			data-slot="tooltip-provider"
-			delay={delay}
-			{...props}
-		/>
-	);
+export function TooltipProvider({ delay = 0, ...props }: KTooltip.Provider.Props) {
+	return <KTooltip.Provider data-slot="tooltip-provider" delay={delay} {...props} />;
 }
 
 export const Tooltip = ({ ...props }: KTooltip.Root.Props) => {
@@ -32,24 +23,14 @@ export const TooltipContent = ({
 	alignOffset = 0,
 	children,
 	...props
-}: KTooltip.Popup.Props &
-	Pick<
-		KTooltip.Positioner.Props,
-		"align" | "alignOffset" | "side" | "sideOffset"
-	>) => {
+}: KTooltip.Popup.Props & Pick<KTooltip.Positioner.Props, "align" | "alignOffset" | "side" | "sideOffset">) => {
 	return (
 		<KTooltip.Portal>
-			<KTooltip.Positioner
-				align={align}
-				alignOffset={alignOffset}
-				side={side}
-				sideOffset={sideOffset}
-				className="isolate z-50"
-			>
+			<KTooltip.Positioner align={align} alignOffset={alignOffset} side={side} sideOffset={sideOffset} className="isolate z-50">
 				<KTooltip.Popup
 					data-slot="tooltip-content"
 					className={cn(
-						"z-50 bubble! inline-flex w-fit max-w-xs items-center gap-1.5 rounded-xl bg-white px-3 py-3.5 text-xs text-[#191034] has-data-[slot=kbd]:pr-1.5 data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 **:data-[slot=kbd]:relative **:data-[slot=kbd]:isolate **:data-[slot=kbd]:z-50 **:data-[slot=kbd]:rounded-lg data-[state=delayed-open]:animate-in data-[state=delayed-open]:fade-in-0 data-[state=delayed-open]:zoom-in-95 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+						"data-[side=bottom]:slide-in-from-top-2 data-[side=inline-end]:slide-in-from-left-2 data-[side=inline-start]:slide-in-from-right-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 data-[state=delayed-open]:animate-in data-[state=delayed-open]:fade-in-0 data-[state=delayed-open]:zoom-in-95 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95 z-50 inline-flex w-fit max-w-xs bubble! items-center gap-1.5 rounded-xl bg-white px-3 py-3.5 text-xs text-[#191034] has-data-[slot=kbd]:pr-1.5 **:data-[slot=kbd]:relative **:data-[slot=kbd]:isolate **:data-[slot=kbd]:z-50 **:data-[slot=kbd]:rounded-lg",
 						className,
 					)}
 					{...props}
@@ -74,8 +55,6 @@ export const DateTooltip = ({ date }: { date: Date }) => (
 				</time>
 			}
 		/>
-		<TooltipContent className={"bubble-t! tail font-btn text-sm max-w-sm"}>
-			{format(date, "PPpp")}
-		</TooltipContent>
+		<TooltipContent className={"bubble-t! tail max-w-sm text-sm font-btn"}>{format(date, "PPpp")}</TooltipContent>
 	</Tooltip>
 );

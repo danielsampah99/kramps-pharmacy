@@ -16,7 +16,7 @@ function RouteComponent() {
 
 	return (
 		<div>
-			<div className="card p-0 overflow-x-scroll">
+			<div className="card overflow-x-scroll p-0">
 				{blacklisted.length === 0 ? (
 					<EmptyCustomers
 						description="Blacklist a customer to get started"
