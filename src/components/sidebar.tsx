@@ -16,9 +16,13 @@ import {
 	UserAddIcon,
 	UserSquareIcon,
 	UserXIcon,
+	XIcon,
 } from "~/components/icons";
 import { Link, Outlet, type LinkProps } from "@tanstack/react-router";
 import type { FC, SVGProps } from "react";
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTrigger } from "./sheet";
+import { Dialog } from "@cloudflare/kumo/primitives/dialog";
+import { Logo } from "./logo";
 
 type IconType = FC<SVGProps<SVGSVGElement>>;
 
@@ -37,6 +41,7 @@ const SidebarRouteItem = ({ href: to, icon: Icon, name }: SidebarRouteProps) => 
 			exact: true,
 		}}
 		activeProps={{
+			"data-active": true,
 			className:
 				"transition-colors text-white bg-emerald-600/90 lg:hover:bg-emerald-500/20 lg:hover:text-emerald-700 lg:bg-emerald-500/20 lg:text-emerald-700 hover:bg-emerald-600/90 hover:text-emerald-700",
 		}}
@@ -52,6 +57,8 @@ const dailyOperationsRoutes: Array<SidebarRouteProps> = [
 	{ id: 1, name: "Sales", icon: BagIcon, href: "/" },
 	{ id: 2, name: "Prescriptions", icon: ClipboardCheckIcon, href: "/" },
 ];
+
+export const mobileSidebarHandle = Dialog.createHandle();
 
 // oxfmt-ignore
 const customerRoutes: Array<SidebarRouteProps> = [
@@ -75,8 +82,8 @@ const adminRoutes: Array<SidebarRouteProps> = [
 ];
 
 export const Sidebar = () => (
-	<KSidebar.Provider defaultOpen={true}>
-		<KSidebar className="lg:w-72! lg:max-w-72!">
+	<>
+		<div className="hidden! lg:block! lg:w-72! lg:max-w-72!">
 			<KSidebar.Content className="py-0!">
 				<KSidebar.Group className="px-0 py-0!">
 					<label className="m-0! mb-1! border-none text-btn font-btn text-gray-700 [&_div]:pl-0!">Branch</label>
@@ -91,7 +98,7 @@ export const Sidebar = () => (
 					</div>
 				</KSidebar.Group>
 
-				<Button className="btn btn-brand mt-4 inline-flex w-full gap-2 font-medium hover:text-white! focus:text-white">
+				<Button className="btn btn-brand mt-4 inline-flex w-full gap-2 font-medium shadow-none lg:shadow-none hover:text-white! focus:text-white">
 					<CartIcon className="size-4.5 fill-brand/10 stroke-logo" />
 					Point of Sale
 				</Button>
@@ -120,13 +127,74 @@ export const Sidebar = () => (
 					))}
 				</KSidebar.Group>
 			</KSidebar.Content>
-		</KSidebar>
+		</div>
 		<main className="w-full min-w-0 flex-1 grow p-0">
 			<Outlet />
 		</main>
-	</KSidebar.Provider>
+	</>
 );
 
 export const Separator = () => (
 	<hr className="my-3 hidden h-px w-full border-0 bg-linear-to-r from-emerald-800/5 via-emerald-800/20 to-emerald-800/5 lg:block" />
+);
+
+export const MobileSidebar = () => (
+	<Sheet handle={mobileSidebarHandle} defaultOpen={false}>
+		<SheetContent className="h-full w-full border-brand! bg-logo lg:hidden block" side="left">
+			<SheetHeader className="flex h-10 items-center justify-between">
+				<Logo className="h-9 text-white" aria-label="Logo" />
+
+				<SheetClose className="rounded-full border border-solid border-gray-100 bg-transparent p-1.5 shadow-inner">
+					<XIcon className="size-6 text-white" />
+				</SheetClose>
+			</SheetHeader>
+
+			<div className="p-4">
+				<label className="m-0! mb-1! border-none text-btn font-btn text-gray-100 [&_div]:pl-0!">Branch</label>
+				<div className="inline-flex w-full cursor-pointer items-center justify-between rounded-btn border border-solid border-btn-border bg-white bg-clip-padding px-3 py-2 font-btn whitespace-nowrap inset-shadow-btn-border transition-all duration-200 hover:border-btn-active hover:bg-emerald-50 hover:text-btn-text hover:inset-shadow-btn-active">
+					<div className="inline-flex flex-1 items-center justify-normal gap-2 font-medium">
+						<StoreIcon className="size-4.5 fill-logo stroke-brand stroke-[1.5]" />
+						<span>Head Office</span>
+					</div>
+				</div>
+			</div>
+
+			<div className="p-4">
+				<Button className="btn btn-brand inline-flex w-full gap-2 font-medium hover:text-white! focus:text-white">
+					<CartIcon className="size-4.5 fill-brand/10 stroke-logo" />
+					Point of Sale
+				</Button>
+			</div>
+
+			<div className="mt-4 space-y-4 px-4 font-medium backdrop-blur-md lg:bg-transparent lg:px-0 lg:text-emerald-900">
+				{dailyOperationsRoutes.map((route) => (
+					<SidebarRouteItem key={route.id} {...route} />
+				))}
+
+				<Separator />
+
+				{customerRoutes.map((route) => (
+					<SidebarRouteItem key={route.id} {...route} />
+				))}
+
+				<Separator />
+
+				{inventoryRoutes.map((route) => (
+					<SidebarRouteItem key={route.id} {...route} />
+				))}
+
+				<Separator />
+
+				{adminRoutes.map((route) => (
+					<SidebarRouteItem key={route.id} {...route} />
+				))}
+			</div>
+		</SheetContent>
+	</Sheet>
+);
+
+export const MobileSidebarTrigger = () => (
+	<SheetTrigger handle={mobileSidebarHandle}>
+		<Logo className="h-10 w-full stroke-brand text-brand" />
+	</SheetTrigger>
 );

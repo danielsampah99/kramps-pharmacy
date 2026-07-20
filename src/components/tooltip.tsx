@@ -55,6 +55,6 @@ export const DateTooltip = ({ date }: { date: Date }) => (
 				</time>
 			}
 		/>
-		<TooltipContent className={"bubble-t! tail max-w-sm text-sm font-btn"}>{format(date, "PPpp")}</TooltipContent>
+		<TooltipContent className="bubble-t! tail max-w-sm text-sm font-btn">{format(date, "PPpp")}</TooltipContent>
 	</Tooltip>
 );

@@ -10,6 +10,7 @@ import { SettingsIcon } from "./icons/settings";
 import { SignOutIcon } from "./icons/signout";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { useCurrentUser } from "~/hooks/use-current-user";
+import { MobileSidebarTrigger } from "./sidebar";
 
 export const Navbar = () => {
 	const { signOut } = useAuthActions();
@@ -26,7 +27,8 @@ export const Navbar = () => {
 	return (
 		<nav className="flex h-16 w-full justify-between border-b border-solid border-gray-200 bg-white px-4 text-gray-800 shadow-sm drop-shadow-logo md:px-6 lg:px-8">
 			<div className="flex items-center">
-				<Link to="/" className="h-9 w-fit rounded-xl bg-transparent px-3 py-1">
+				<MobileSidebarTrigger />
+				<Link to="/" className="hidden h-9 w-fit rounded-xl bg-transparent px-3 py-1 lg:block">
 					<Logo className="h-full stroke-brand text-brand" />
 				</Link>
 			</div>
@@ -37,7 +39,7 @@ export const Navbar = () => {
 					className="group mx-1 inline-flex items-center gap-x-2.5 rounded-xl bg-transparent px-3 py-2 transition-colors hover:bg-kumo-brand/20"
 				>
 					<DashboardIcon className="size-4 text-brand group-hover:text-kumo-brand-hover" />
-					Dashboard
+					<span className="hidden lg:inline">Dashboard</span>
 				</Link>
 
 				<Popover>
@@ -49,7 +51,7 @@ export const Navbar = () => {
 						)}
 					>
 						<UserIcon className="size-4 text-brand transition-colors group-focus-within:text-kumo-brand-hover group-hover:text-kumo-brand-hover" />
-						Account
+						<span className="hidden lg:inline">Account</span>
 					</Popover.Trigger>
 					<Popover.Content
 						align="end"
