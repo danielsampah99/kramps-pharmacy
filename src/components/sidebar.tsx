@@ -194,7 +194,7 @@ export const MobileSidebar = () => (
 );
 
 export const MobileSidebarTrigger = () => (
-	<SheetTrigger handle={mobileSidebarHandle}>
+	<SheetTrigger handle={mobileSidebarHandle} className="block lg:hidden">
 		<Logo className="h-10 w-full stroke-brand text-brand" />
 	</SheetTrigger>
 );
